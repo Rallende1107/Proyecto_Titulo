@@ -1,0 +1,59 @@
+{% extends './index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="card">
+        {% if form.errors %}
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                <div>
+                    <h2 class="text-center"><i class="fa-solid fa-triangle-exclamation"></i> Error</h2>
+                </div>
+                <div>
+                    <ul class="text-center">
+                        {% for field_errors in form.errors.values %}
+                            {% for error in field_errors %}
+                                <p> {{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <a href="{{ cancel_url }}" class="btn btn-danger btn-lg">
+                <i class="fa-solid fa-arrow-left"></i> Atrás
+            </a>
+            <h2 class="card-title text-center flex-grow-1">
+                <i class="fa-solid fa-plus"></i>
+                {{ title }}
+                <i class="fa-solid fa-plus"></i>
+            </h2>
+        </div>
+
+        <div class="card-body">
+            <form action="{{ success_url }}" method="post" enctype="multipart/form-data" id="tu_formulario">
+                {% csrf_token %}
+
+
+          {{ form.as_p }}
+
+                <div class="row mb-3">
+                    <div class="col-sm-10">
+                        <a href="{{ cancel_url }}" class="btn btn-danger btn-lg">
+                            <i class="fa-solid fa-xmark"></i> Cancelar
+                        </a>
+                        <button type="submit" id="sabess" class="btn btn-primary btn-lg m-3">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar Registro
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

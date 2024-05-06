@@ -1,6 +1,7 @@
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator, MaxLengthValidator
 from .models import Region, Comuna, Cliente, Comerciante, Familiar, Local, Producto
+from django.contrib.auth.forms import UserCreationForm
 
 class RegionForm(forms.ModelForm):
     """Form definition for Region."""
@@ -116,7 +117,7 @@ class ComunaForm(forms.ModelForm):
         fields = ['nombre', 'latitud', 'longitud', 'region']
 
 
-class ClienteForm(forms.ModelForm):
+class ClienteForm(UserCreationForm):
     username = forms.CharField(
         label='Nombre de usuario',
         widget=forms.TextInput(
@@ -217,12 +218,22 @@ class ClienteForm(forms.ModelForm):
             }
         )
     )
+    password1 = forms.CharField(
+        label='Contraseña',
+        strip=False,
+        widget=forms.PasswordInput(attrs={'placeholder': 'Ingresa tu contraseña'}),
+    )
 
+    password2 = forms.CharField(
+        label='Confirmar Contraseña',
+        strip=False,
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirma tu contraseña'}),
+    )
     class Meta:
         model = Cliente
-        fields = ['username', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'comuna', 'direccion', 'rut', 'telefono']
+        fields = ['username', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'comuna', 'direccion', 'rut', 'telefono',  'password1', 'password2',]
 
-class ComercianteForm(forms.ModelForm):
+class ComercianteForm(UserCreationForm):
     username = forms.CharField(
         label='Nombre de usuario',
         widget=forms.TextInput(
@@ -438,7 +449,7 @@ class LocalForm(forms.ModelForm):
         model = Local
         fields = ['nombre', 'comuna', 'direccion', 'representante']
 
-
+class ProductoForm(forms.ModelForm):
     nombre = forms.CharField(
         label='Nombre del producto',
         widget=forms.TextInput(

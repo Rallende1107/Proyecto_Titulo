@@ -16,12 +16,12 @@
   <body>
 <div class="container">
 
-  <h1>Registro de Usuario</h1>
+  <h1>{{title}}</h1>
 
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Registrarse como User1</button>
+    <button type="submit">Registrarse</button>
   </form>
 
   <script src="{% static 'js/script.js' %}"></script>
