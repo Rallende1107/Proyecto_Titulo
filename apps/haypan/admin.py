@@ -1,6 +1,6 @@
 from django.contrib import admin
 # from import_export.admin import ImportExportModelAdmin
-from .models import Region, Comuna, Cliente, Comerciante, Familiar, Local, Producto
+from .models import Region, Comuna, Usuario, Familiar, Local, Producto
 
 @admin.register(Region)
 class RegionAdmin(admin.ModelAdmin):
@@ -18,21 +18,14 @@ class ComunaAdmin(admin.ModelAdmin):
     list_filter = ('nombre', 'region')
     ordering = ('nombre',)
 
-@admin.register(Cliente)
-class ClienteAdmin(admin.ModelAdmin):
+@admin.register(Usuario)
+class UserAdmin(admin.ModelAdmin):
     """Admin View for Cliente"""
-    list_display = ('username', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'comuna', 'direccion', 'rut', 'telefono')
-    search_fields = ('username', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'comuna', 'direccion', 'rut', 'telefono')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'apellido_materno', 'comuna', 'direccion', 'rut')
+    search_fields = ('username', 'email', 'first_name', 'last_name', 'apellido_materno', 'comuna', 'direccion', 'rut')
     list_filter = ('comuna',)
     ordering = ('username',)
 
-@admin.register(Comerciante)
-class ComercianteAdmin(admin.ModelAdmin):
-    """Admin View for Comerciante"""
-    list_display = ('username', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'comuna', 'direccion', 'rut', 'telefono')
-    search_fields = ('username', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'comuna', 'direccion', 'rut', 'telefono')
-    list_filter = ('comuna',)
-    ordering = ('username',)
 
 @admin.register(Familiar)
 class FamiliarAdmin(admin.ModelAdmin):

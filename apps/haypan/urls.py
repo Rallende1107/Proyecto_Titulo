@@ -5,6 +5,12 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     # Base
     path(
+        '',
+        views.HomeView.as_view(),
+        name='home'
+        ),
+
+    path(
         'home/',
         views.HomeView.as_view(),
         name='home'
@@ -42,25 +48,25 @@ path('logout/', views.salir, name='salir'),
 
     path(
         'local/<int:pk>/update/',
-        views.LocalCreateView.as_view(),
+        views.LocalUpdateView.as_view(),
         name='local_update'
         ),
-    path(
-        'local/<int:pk>/delete/',
-        views.LocalCreateView.as_view(),
-        name='local_Delete'
-        ),
+    # path(
+    #     'local/<int:pk>/delete/',
+    #     views.LocalCreateView.as_view(),
+    #     name='local_Delete'
+    #     ),
     path(
         'local/list/',
-        views.LocalCreateView.as_view(),
+        views.LocalListView.as_view(),
         name='local_list'
         ),
 
-    path(
-        'local/<int:pk>/detail/',
-        views.LocalCreateView.as_view(),
-        name='local_Detail'
-        ),
+    # path(
+    #     'local/<int:pk>/detail/',
+    #     views.LocalCreateView.as_view(),
+    #     name='local_Detail'
+    #     ),
 
 
     path(
@@ -68,27 +74,27 @@ path('logout/', views.salir, name='salir'),
         views.ProductoCreateView.as_view(),
         name='producto_add'
         ),
-        path(
-        'producto/list/',
-        views.LocalCreateView.as_view(),
-        name='producto_list'
-        ),
+    #     path(
+    #     'producto/list/',
+    #     views.ProductoCreateView.as_view(),
+    #     name='producto_list'
+    #     ),
 
-    path(
-        'producto/<int:pk>/update/',
-        views.ProductoCreateView.as_view(),
-        name='producto_update'
-        ),
-    path(
-        'producto/<int:pk>/datail/',
-        views.ProductoCreateView.as_view(),
-        name='producto_detail'
-        ),
-    path(
-        'producto/<int:pk>/delete/',
-        views.ProductoCreateView.as_view(),
-        name='producto_delete'
-        ),
+    # path(
+    #     'producto/<int:pk>/update/',
+    #     views.ProductoCreateView.as_view(),
+    #     name='producto_update'
+    #     ),
+    # path(
+    #     'producto/<int:pk>/datail/',
+    #     views.ProductoCreateView.as_view(),
+    #     name='producto_detail'
+    #     ),
+    # path(
+    #     'producto/<int:pk>/delete/',
+    #     views.ProductoCreateView.as_view(),
+    #     name='producto_delete'
+    #     ),
 
     # path('translator/<int:pk>/update/', views.TranslatorUpdateView.as_view(), name='TranslatorUpdate'),
 ]

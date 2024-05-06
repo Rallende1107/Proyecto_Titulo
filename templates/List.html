@@ -1,0 +1,70 @@
+{% extends './index.html' %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cards.css' %}?v=4" />
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.6/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/rg-1.5.0/sc-2.4.2/sb-1.7.1/sp-2.3.1/sl-2.0.1/datatables.min.css" rel="stylesheet">
+
+{% endblock head %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for elemento in elementos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-img-container">
+                    <img src="{{ elemento.image.url }}" class="card-img-top" alt="..."/>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5><strong>{{ elemento.nombre }}</strong></h5>
+                    </div>
+                    <div class="card-text">
+                        <p><strong>Marca:</strong> {{ elemento.direccion }}</p>
+                        <p><strong>Costo:</strong> ${{ elemento.costo }}</p>
+                        <p><strong>Categoria:</strong> {{ elemento.categoria }}</p>
+                        <p><strong>Descripcion:</strong> {{ elemento.descripcion }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-success btn-lg">
+                            <i class="fa-solid fa-cart-shopping"></i> Añadir carrito
+                        </a>
+                        <a href="#" class="btn btn-info btn-lg">
+                            <i class="fas fa-eye"></i> Ver Detalles
+                        </a>
+                        <div class="d-inline">
+                            <a href="#" class="btn btn-warning btn-lg">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger btn-lg">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+<!-- Bloque JS -->
+{% block javascript %}
+
+    {% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.6/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/rg-1.5.0/sc-2.4.2/sb-1.7.1/sp-2.3.1/sl-2.0.1/datatables.min.js"></script>
+
+    {% endblock script %}
+
+{% endblock javascript %}
+
+
+

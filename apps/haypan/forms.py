@@ -1,6 +1,6 @@
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator, MaxLengthValidator
-from .models import Region, Comuna, Cliente, Comerciante, Familiar, Local, Producto
+from .models import Region, Comuna, Usuario, Familiar, Local, Producto
 from django.contrib.auth.forms import UserCreationForm
 
 class RegionForm(forms.ModelForm):
@@ -117,7 +117,7 @@ class ComunaForm(forms.ModelForm):
         fields = ['nombre', 'latitud', 'longitud', 'region']
 
 
-class ClienteForm(UserCreationForm):
+class UsuarioForm(UserCreationForm):
     username = forms.CharField(
         label='Nombre de usuario',
         widget=forms.TextInput(
@@ -151,7 +151,7 @@ class ClienteForm(UserCreationForm):
             }
         )
     )
-    apellido_paterno = forms.CharField(
+    last_name = forms.CharField(
         label='Apellido paterno',
         widget=forms.TextInput(
             attrs={
@@ -205,7 +205,7 @@ class ClienteForm(UserCreationForm):
             }
         )
     )
-    telefono = forms.CharField(
+    phone = forms.CharField(
         label='Teléfono',
         max_length=10,
         required=False,
@@ -229,115 +229,11 @@ class ClienteForm(UserCreationForm):
         strip=False,
         widget=forms.PasswordInput(attrs={'placeholder': 'Confirma tu contraseña'}),
     )
+    cliente = forms.BooleanField(required=False, widget=forms.HiddenInput)
+    comerciante = forms.BooleanField(required=False, widget=forms.HiddenInput)
     class Meta:
-        model = Cliente
-        fields = ['username', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'comuna', 'direccion', 'rut', 'telefono',  'password1', 'password2',]
-
-class ComercianteForm(UserCreationForm):
-    username = forms.CharField(
-        label='Nombre de usuario',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off',
-                'placeholder': 'Ingrese su nombre de usuario',
-                'type': 'text'
-            }
-        )
-    )
-    email = forms.EmailField(
-        label='Correo electrónico',
-        widget=forms.EmailInput(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off',
-                'placeholder': 'Ingrese su correo electrónico',
-                'type': 'email'
-            }
-        )
-    )
-    first_name = forms.CharField(
-        label='Nombre',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off',
-                'placeholder': 'Ingrese su nombre',
-                'type': 'text'
-            }
-        )
-    )
-    apellido_paterno = forms.CharField(
-        label='Apellido paterno',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off',
-                'placeholder': 'Ingrese su apellido paterno',
-                'type': 'text'
-            }
-        )
-    )
-    apellido_materno = forms.CharField(
-        label='Apellido materno',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off',
-                'placeholder': 'Ingrese su apellido materno',
-                'type': 'text'
-            }
-        )
-    )
-    comuna = forms.ModelChoiceField(
-        queryset=Comuna.objects.all(),
-        label='Comuna',
-        widget=forms.Select(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off'
-            }
-        )
-    )
-    direccion = forms.CharField(
-        label='Dirección',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off',
-                'placeholder': 'Ingrese su dirección',
-                'type': 'text'
-            }
-        )
-    )
-    rut = forms.CharField(
-        label='RUT',
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off',
-                'placeholder': 'Ingrese su RUT',
-                'type': 'text'
-            }
-        )
-    )
-    telefono = forms.CharField(
-        label='Teléfono',
-        max_length=10,
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off',
-                'placeholder': 'Ingrese su número de teléfono',
-                'type': 'text'
-            }
-        )
-    )
-
-    class Meta:
-        model = Comerciante
-        fields = ['username', 'email', 'first_name', 'apellido_paterno', 'apellido_materno', 'comuna', 'direccion', 'rut', 'telefono']
+        model = Usuario
+        fields = ['username', 'email', 'first_name', 'last_name', 'apellido_materno', 'comuna', 'direccion', 'rut', 'phone',  'password1', 'password2','comerciante','cliente']
 
 class FamiliarForm(forms.ModelForm):
     nombre = forms.CharField(
@@ -387,7 +283,7 @@ class FamiliarForm(forms.ModelForm):
         )
     )
     familia = forms.ModelChoiceField(
-        queryset=Cliente.objects.all(),
+        queryset=Usuario.objects.filter(cliente=True) ,
         label='Familia',
         widget=forms.Select(
             attrs={
@@ -434,20 +330,20 @@ class LocalForm(forms.ModelForm):
             }
         )
     )
-    representante = forms.ModelChoiceField(
-        queryset=Comerciante.objects.all(),
-        label='Representante',
-        widget=forms.Select(
-            attrs={
-                'class': 'form-control',
-                'autocomplete': 'off'
-            }
-        )
-    )
+    # representante = forms.ModelChoiceField(
+    #     queryset=Usuario.objects.filter(comerciante=True),
+    #     label='Representante',
+    #     widget=forms.Select(
+    #         attrs={
+    #             'class': 'form-control',
+    #             'autocomplete': 'off'
+    #         }
+    #     )
+    # )
 
     class Meta:
         model = Local
-        fields = ['nombre', 'comuna', 'direccion', 'representante']
+        fields = ['nombre', 'comuna', 'direccion',] #'representante',]
 
 class ProductoForm(forms.ModelForm):
     nombre = forms.CharField(

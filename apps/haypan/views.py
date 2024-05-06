@@ -8,8 +8,8 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (CreateView, FormView, UpdateView, ListView, DeleteView, DetailView, TemplateView)
 
-from .forms import (ClienteForm, ComercianteForm, LocalForm, ProductoForm)
-from .models import Cliente, Comerciante, Local, Producto
+from .forms import (UsuarioForm,  LocalForm, ProductoForm)
+from .models import Usuario, Local, Producto
 
 # Create your views here.
 
@@ -19,7 +19,7 @@ class HomeView(TemplateView):
 
 class ComercianteRegisterView(CreateView):
     template_name = 'user_register.html'
-    form_class = ClienteForm
+    form_class = UsuarioForm
     success_url = reverse_lazy ("home")
     title = 'Registro comerciante'
 
@@ -29,20 +29,16 @@ class ComercianteRegisterView(CreateView):
         context['title'] = self.title
         context['cancel_url'] = self.success_url
         return context
-
-
     def form_valid(self, form):
-        # Crea una instancia del modelo Cliente y guarda los datos del formulario
-        user = form.save(commit=False)
-        user.save()
-        return super().form_valid(form)  # Devuelve la URL de éxito predeterminada
+        form.instance.cliente = True
+        form.instance.comerciante = False
+        return super().form_valid(form)
 
 class ClienteRegisterView(CreateView):
     template_name = 'user_register.html'
-    form_class = ClienteForm
+    form_class = UsuarioForm
     success_url = reverse_lazy ("home")
     title = 'Registro Cliente'
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,12 +46,10 @@ class ClienteRegisterView(CreateView):
         context['cancel_url'] = self.success_url
         return context
 
-
     def form_valid(self, form):
-        # Crea una instancia del modelo Cliente y guarda los datos del formulario
-        user = form.save(commit=False)
-        user.save()
-        return super().form_valid(form)  # Devuelve la URL de éxito predeterminada
+        form.instance.cliente = True
+        form.instance.comerciante = False
+        return super().form_valid(form)
 
 class LoginView(FormView):
     template_name = 'login.html'
@@ -70,12 +64,7 @@ class LoginView(FormView):
 
         if user is not None:
             login(self.request, user)
-            if isinstance(user, Cliente):
-                return reverse_lazy ("home") # Clientes
-            elif isinstance(user, Comerciante):
-                return reverse_lazy ("home") # Comerciantes
-            else:
-                return redirect(self.success_url)
+            return redirect(self.success_url)
         else:
             return render(self.request, self.template_name, {'form': form, 'error': 'Usuario o contraseña incorrectos'})
 
@@ -89,40 +78,42 @@ def salir(request):
     logout(request)
     return redirect('home')
 
-# productos
+##########################################################################################################
+########################### Locales
+##########################################################################################################
 
-class ComercianteRequiredMixin(LoginRequiredMixin):
-    """Mixin que requiere que el usuario sea un comerciante."""
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-
-        if not isinstance(request.user, Comerciante):
-            raise Http404("No tienes permisos para acceder a esta página.")
-
-        return super().dispatch(request, *args, **kwargs)
-
-class LocalCreateView(ComercianteRequiredMixin, CreateView):
+class LocalCreateView(LoginRequiredMixin, CreateView):
     model = Local
     template_name = "p_add.html"
     form_class = LocalForm
-    success_url = reverse_lazy ("home")
+    success_url = reverse_lazy ("local_list")
+    cancel_url = reverse_lazy ("home")
     title= 'Crear Nuevo Local'
-    # login_url = reverse_lazy ("login")
 
     def get_login_url(self):
         return reverse_lazy("login")
+    # def form_valid(self, form):
+    #     # Asignar el comerciante actual como representante del local
+    #     form.instance.representante = self.request.user
+    #     return super().form_valid(form)
+
+    def form_valid(self, form):
+        # Obtener el ID del usuario logueado
+        representante_id = self.request.user.id
+        # Asignar el ID del usuario como representante del local
+        form.instance.representante_id = representante_id
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.title
-        context['cancel_url'] = self.success_url
+        context['cancel_url'] = self.cancel_url
         return context
 
-class LocalUpdateView(ComercianteRequiredMixin, UpdateView):
+class LocalUpdateView(LoginRequiredMixin, UpdateView):
     model = Local
     form_class = LocalForm
-    success_url = reverse_lazy ("home")
+    success_url = reverse_lazy ("local_list")
     template_name = "p_add.html"
     title = 'Modificar Local'
 
@@ -133,19 +124,64 @@ class LocalUpdateView(ComercianteRequiredMixin, UpdateView):
 
         return context
 
+class LocalListView(ListView, LoginRequiredMixin):
+    """ Lista de Todos los Locales"""
+    model = Local
+    template_name = "List_v1.html"
+    context_object_name = 'elementos'
+    title = 'Lista de Locales'
+    addURL = reverse_lazy('local_add')
+    homeURL = reverse_lazy('home')
+
+    def get_queryset(self):
+        # Filtrar el queryset por el id del usuario logueado
+        usuario_id = self.request.user.id
+        return Local.objects.filter(representante_id=usuario_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        context['addURL'] = self.addURL
+        context['homeURL'] = self.homeURL
+
+        # Añadir el usuario logueado al contexto
+        context['usuario_logueado'] = self.request.user
+
+        return context
+
+##########################################################################################################
+########################### Locales
+##########################################################################################################
 
 
+class ProductoListView(ListView):
+    """ Lista de Todos los Locales"""
+    model = Producto
+    template_name = "List.html"
+    context_object_name = 'elementos'
+    title = 'Lista de Locales'
+    addURL = reverse_lazy('local_Add')
+    homeURL = reverse_lazy('home')
 
+    def get_queryset(self):
+        return Local.objects.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        context['addURL'] = self.addURL
+        context['homeURL'] = self.homeURL
+        return context
 
-
-
-class ProductoCreateView(ComercianteRequiredMixin, CreateView):
+class ProductoCreateView(LoginRequiredMixin, CreateView):
     model = Producto
     template_name = "p_add.html"
     form_class = ProductoForm
     success_url = reverse_lazy ("home")
     title= 'Crear Nuevo Producto'
+
+    def get_login_url(self):
+        return reverse_lazy("login")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

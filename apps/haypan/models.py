@@ -37,48 +37,34 @@ class Usuario(AbstractUser):
     # username = models.CharField(max_length=100)
     email = models.EmailField(max_length=254)
     first_name = models.CharField('Nombre', max_length=100)
-    apellido_paterno = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     apellido_materno = models.CharField(max_length=100)
     direccion = models.CharField(max_length=150)
-
-
-
-    def __str__(self):
-        return self.username
+    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, blank=True, null=True)
+    rut = models.CharField(max_length=15)
+    cliente = models.BooleanField(default=False)
+    comerciante = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'Usuario'
         managed = True
-        verbose_name = 'Usuario'
-        verbose_name_plural = 'Usuarios'
+        constraints = [
+            # models.UniqueConstraint(fields=['username', 'cliente', 'comerciante'], name='unique_username_for_user_type')
+        ]
 
-class Cliente(Usuario):
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE)
-    rut = models.CharField(max_length=15)
-    telefono = models.CharField(max_length=10, null=True, blank=True)
-    def __str__(self):
-        return self.username
 
-    class Meta:
-        db_table = 'Cliente'
-        managed = True
-        verbose_name = 'Cliente'
-        verbose_name_plural = 'Clientes'
+    def clean(self):
+        super().clean()
+        if Usuario.objects.filter(username=self.username, cliente=self.cliente, comerciante=self.comerciante).exists():
+            raise ValidationError("Este nombre de usuario ya está en uso para este tipo de usuario.")
 
-class Comerciante(Usuario):
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE)
-    rut = models.CharField(max_length=15)
-    telefono = models.CharField(max_length=10, null=True, blank=True)
 
 
     def __str__(self):
+
         return self.username
 
-    class Meta:
-        db_table = 'Comerciante'
-        managed = True
-        verbose_name = 'Comerciante'
-        verbose_name_plural = 'Comerciantes'
+
 
 
 class Familiar(models.Model):
@@ -86,7 +72,7 @@ class Familiar(models.Model):
     apellido_paterno = models.CharField(max_length=100)
     apellido_materno = models.CharField(max_length=100)
     telefono = models.CharField(max_length=10, null=True, blank=True)
-    familia = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    familia = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.familia.nombre} {self.nombre} {self.apellido_paterno} {self.apellido_materno}"
@@ -101,7 +87,7 @@ class Local(models.Model):
     nombre = models.CharField(max_length=50, null=False)
     comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE)
     direccion = models.CharField(max_length=90, null=False)
-    representante = models.ForeignKey(Comerciante, on_delete=models.CASCADE, default=1)
+    representante = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return f"{self.representante.first_name} - {self.nombre}"
