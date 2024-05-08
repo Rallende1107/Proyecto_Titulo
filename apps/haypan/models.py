@@ -109,6 +109,11 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
+    def get_imagen_url(self):
+            if self.imagen:
+                return self.imagen.url
+            else:
+                return None
 
     class Meta:
         db_table = 'Producto'
