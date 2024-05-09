@@ -1,0 +1,32 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-image: url('{% static "img/pixlr-image-generator-caa1c658-b157-4ea7-915e-f2afb5cec9b8.webp" %}');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.container {
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+}
+@media (max-width: 767.98px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .container form {
+      width: 100%;
+    }
+  
+    .container input[type="text"],
+    .container input[type="password"] {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
