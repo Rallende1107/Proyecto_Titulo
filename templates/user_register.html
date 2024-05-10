@@ -1,23 +1,28 @@
 
-{% extends './index.html' %}
+{% extends 'index.html' %}
 {% load static %}
-{% block title %}{{ title }}{% endblock title %}
 
-    {% block head %} {% endblock head %}
- 
-
-    {% block content %}
-   <div class="container">
-    <h1>{{title}}</h1>
+{% block content %}
+<h1></h1>
+  {% block title %}{{ title }}{% endblock title %}
+  
+  {% block head %}
+    <!-- Aquí puedes incluir cualquier contenido adicional en la sección head si es necesario -->
+  {% endblock head %}
+  
+  <div class="container">
+    <h1>{{ title }}</h1>
 
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submi">Registrarse</button>
+      <h1></h1>
+      <button type="submit">Registrar</button>
     </form>
-   </div>
-    {% endblock content %}
+  </div>
+{% endblock content %}
 
-  {% block javascript %}
+{% block javascript %}
+  <!-- Aquí puedes incluir cualquier script adicional si es necesario -->
+{% endblock javascript %}
 
-  {% endblock javascript %}

@@ -1,32 +1,143 @@
 body {
-    font-family: 'Courier New', monospace;
-    background-image: url('{% static "img/pixlr-image-generator-caa1c658-b157-4ea7-915e-f2afb5cec9b8.webp" %}');
-    background-size: cover;
-    background-repeat: no-repeat;
+  font-family: 'Courier New', monospace;
+  background-image: url('{% static "img/pixlr-image-generator-caa1c658-b157-4ea7-915e-f2afb5cec9b8.webp" %}');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .container {
-    color: white;
-    font-size: 1.5rem;
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.white-square {
+  background-color: rgb(75, 15, 152);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(248, 251, 251, 0.955);
+  width: 30rem;
+}
+
+.title {
+  font-size: 2rem; /* Tamaño de fuente */
+  font-weight: bold; /* Peso de la fuente */
+  color: #dad539; /* Color del texto */
+  /* Otros estilos que desees agregar */
+}
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: hsla(180, 52%, 96%, 0.971);
+  margin-bottom: 1rem;
+}
+
+h2, p {
+  font-size: 1.0rem;
+  font-weight: bold;
+  color: hsla(185, 55%, 87%, 0.971);
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #f0f7f8;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+  height: 3rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 0 1rem;
+  font-size: 1.1rem;
+}
+
+button[type="submit"] {
+  height: 3rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #e6efe6;
+  color: rgb(15, 16, 15);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: 20px;
+  margin-top: 100px;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+}
+
+
+
+/* Estilos para pantallas más pequeñas que 576px (como teléfonos móviles en orientación vertical) */
+@media (max-width: 575.98px) {
+  /* Agrega tus estilos específicos para pantallas pequeñas aquí */
+}
+
+/* Estilos para pantallas medianas de 576px a 767.98px (como teléfonos móviles en orientación horizontal y tabletas) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Agrega tus estilos específicos para pantallas medianas aquí */
+}
+
+/* Estilos para pantallas grandes de 768px a 991.98px (como tabletas en orientación horizontal) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Agrega tus estilos específicos para pantallas grandes aquí */
+}
+
+/* Estilos para pantallas extra grandes de 992px a 1199.98px (como pantallas de escritorio) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Agrega tus estilos específicos para pantallas extra grandes aquí */
+}
+
+/* Estilos para pantallas aún más grandes de 1200px en adelante (como pantallas de escritorio muy anchas) */
+@media (min-width: 1200px) {
+  /* Agrega tus estilos específicos para pantallas muy grandes aquí */
+}
+
+@media (max-width: 767.98px) {
+  .container {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    color: white;
-}
-@media (max-width: 767.98px) {
-    .container {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .container form {
-      width: 100%;
-    }
-  
-    .container input[type="text"],
-    .container input[type="password"] {
-      width: 100%;
-      margin-bottom: 1rem;
-    }
   }
+
+  .container form {
+    width: 100%;
+  }
+
+  .container input[type="text"],
+  .container input[type="password"] {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
