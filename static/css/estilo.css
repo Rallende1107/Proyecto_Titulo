@@ -25,17 +25,13 @@ img {
   width: 30rem;
 }
 
-.title {
-  font-size: 2rem; /* Tamaño de fuente */
-  font-weight: bold; /* Peso de la fuente */
-  color: #dad539; /* Color del texto */
-  /* Otros estilos que desees agregar */
-}
+
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
-  color: hsla(180, 52%, 96%, 0.971);
+  color: hsla(180, 89%, 48%, 0.971);
   margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 h2, p {
@@ -140,4 +136,9 @@ button[type="submit"] {
     width: 100%;
     margin-bottom: 1rem;
   }
+}
+
+.fa-solid{
+  margin-top: 15;
+  font-size: 2em;
 }

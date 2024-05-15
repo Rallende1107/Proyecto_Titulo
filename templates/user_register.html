@@ -5,13 +5,14 @@
 {% block content %}
 <h1></h1>
   {% block title %}{{ title }}{% endblock title %}
-  
+
   {% block head %}
     <!-- Aquí puedes incluir cualquier contenido adicional en la sección head si es necesario -->
   {% endblock head %}
-  
+
   <div class="container">
     <h1>{{ title }}</h1>
+
 
     <form method="post">
       {% csrf_token %}
