@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.haypan.urls')),
+    path('usuario/', include('apps.haypan.api.urls')),
+    path('producto/', include('apps.haypan.api.routers')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
