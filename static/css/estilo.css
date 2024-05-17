@@ -1,12 +1,88 @@
-body {
+html * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: 'Courier New', monospace;
-  background-image: url('{% static "img/pixlr-image-generator-caa1c658-b157-4ea7-915e-f2afb5cec9b8.webp" %}');
-  background-size: cover;
-  background-repeat: no-repeat;
+  /* font-family: 'Roboto', sans-serif; */
+   /* Letra */
 }
-img {
+
+body {
+  background-image: url('../img/pixlr-image-generator-caa1c658-b157-4ea7-915e-f2afb5cec9b8.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 { font-size: 3.5em; }
+h2 { font-size: 2.7em; }
+h3 { font-size: 2.5em; }
+h4 { font-size: 1.5em; }
+p { font-size:1em; }
+a { text-decoration: none;}
+ul, li { list-style: none; }
+
+footer{
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.about-us{
+  display: flex; justify-content: flex-start; align-items: center; padding: 0.1px;
+}
+.about-us-pa{
+  margin-left: 20px;
+}
+
+/* img {
   max-width: 100%;
   height: auto;
+} */
+/* Estilo general para la navbar */
+.navbar {
+  background-color: #000; /* Fondo negro para la navbar */
+  color: #fff; /* Texto blanco para la navbar */
+}
+
+/* Estilo para los enlaces de la navbar */
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: #fff; /* Texto blanco para los enlaces y el brand */
+}
+
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: #ccc; /* Color gris claro para los enlaces y el brand al pasar el cursor */
+  text-decoration: none; /* Sin subrayado al pasar el cursor */
+}
+
+/* Estilo para el botón de toggle de la navbar en dispositivos móviles */
+.navbar-toggler {
+  border-color: #fff; /* Borde blanco para el botón de toggle */
+}
+
+ .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28155, 155, 155, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); Color blanco para el ícono de toggle
+  /* color: #fff;  */
+}
+
+/* Estilo para los elementos dropdown */
+.navbar .dropdown-menu {
+  background-color: #000; /* Fondo negro para el dropdown */
+  color: #fff; /* Texto blanco para el dropdown */
+}
+
+.navbar .dropdown-item {
+  color: #fff; /* Texto blanco para los elementos del dropdown */
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #333; /* Fondo gris oscuro para los elementos del dropdown al pasar el cursor */
+  color: #ccc; /* Texto gris claro para los elementos del dropdown al pasar el cursor */
+  text-decoration: none; /* Sin subrayado al pasar el cursor */
+}
+
+/* Estilo para el separador en el dropdown */
+.navbar .dropdown-divider {
+  border-color: #444; /* Color gris oscuro para el separador */
 }
 
 .container {
@@ -27,7 +103,7 @@ img {
 
 
 h1 {
-  font-size: 3rem;
+  font-size: 40px;
   font-weight: bold;
   color: hsla(180, 89%, 48%, 0.971);
   margin-bottom: 1rem;

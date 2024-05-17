@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="{% url 'home' %}">HayPan</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Perfil</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownComerciante" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Comerciante
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownComerciante">
+                    <a class="dropdown-item" href="{% url 'Register_Comerciante' %}">Registrar Comerciante</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'producto_add' %}">Nuevo producto</a>
+                    <a class="dropdown-item" href="{% url 'producto_list' %}">Productos</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'local_add' %}">Nuevo Local</a>
+                    <a class="dropdown-item" href="{% url 'local_list' %}">Mis Locales</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownCliente" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cliente
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownCliente">
+                    <a class="dropdown-item" href="{% url 'Register_Cliente' %}">Registrar Cliente</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'producto_add' %}">Agregar Producto</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'salir' %}"> {{ user.username }} Salir</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'login' %}" class="nav-link">Ingresar</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
