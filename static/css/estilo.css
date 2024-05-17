@@ -101,25 +101,29 @@ footer{
   width: 30rem;
 }
 
-
-
-
+/* Estilo para el contenedor del título */
 /* Estilo para el contenedor del título */
 .title-container {
-  text-align: center; /* Centrar el contenido horizontalmente */
-
-  display: inline-block; /* Ajustar al contenido */
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  background-color: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente */
   border-radius: 10px; /* Bordes redondeados */
-  backdrop-filter: blur(5px); /* Desenfoque */
-  padding: 10px; /* Añade espacio alrededor del texto */
+  backdrop-filter: blur(10px); /* Desenfoque */
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin-top: 20px; /* Agrega espacio desde arriba */
 }
 
 /* Estilo para el texto del título */
 .mytitle {
+  text-align: center;
   color: #fff; /* Cambia a blanco */
   margin: 0; /* Elimina los márgenes */
 }
+
+
+
+
 
 h2, p {
   font-size: 1.0rem;

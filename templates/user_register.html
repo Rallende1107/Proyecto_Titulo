@@ -9,15 +9,25 @@
 {% endblock head %}
 
 {% block content %}
+  <div class="title-container">
     <h1 class="mytitle">{{ title }}</h1>
-    <form method="post">
+  </div>
+
+      <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        <h1></h1>
         <button type="submit">Registrar</button>
-    </form>
-{% endblock %}
+      </form>
+
+      <script src="{% static 'js/script.js' %}"></script>
+      <script src="{% static 'js/all.js' %}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+
+{% endblock content %}
 
 {% block javascript %}
-  <!-- Aquí puedes incluir cualquier script adicional si es necesario -->
+
 {% endblock javascript %}
 
