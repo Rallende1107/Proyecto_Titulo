@@ -59,9 +59,8 @@ footer{
   border-color: #fff; /* Borde blanco para el botón de toggle */
 }
 
- .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28155, 155, 155, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); Color blanco para el ícono de toggle
-  /* color: #fff;  */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28155, 155, 155, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Color blanco para el ícono de toggle */
 }
 
 /* Estilo para los elementos dropdown */
@@ -85,13 +84,14 @@ footer{
   border-color: #444; /* Color gris oscuro para el separador */
 }
 
-.container {
+
+/* .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 50vh;
-}
+} */
 
 .white-square {
   background-color: rgb(75, 15, 152);
@@ -102,12 +102,23 @@ footer{
 }
 
 
-h1 {
-  font-size: 40px;
-  font-weight: bold;
-  color: hsla(180, 89%, 48%, 0.971);
-  margin-bottom: 1rem;
-  margin-top: 2rem;
+
+
+/* Estilo para el contenedor del título */
+.title-container {
+  text-align: center; /* Centrar el contenido horizontalmente */
+
+  display: inline-block; /* Ajustar al contenido */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  border-radius: 10px; /* Bordes redondeados */
+  backdrop-filter: blur(5px); /* Desenfoque */
+  padding: 10px; /* Añade espacio alrededor del texto */
+}
+
+/* Estilo para el texto del título */
+.mytitle {
+  color: #fff; /* Cambia a blanco */
+  margin: 0; /* Elimina los márgenes */
 }
 
 h2, p {
@@ -197,7 +208,7 @@ button[type="submit"] {
   /* Agrega tus estilos específicos para pantallas muy grandes aquí */
 }
 
-@media (max-width: 767.98px) {
+/* @media (max-width: 767.98px) {
   .container {
     flex-direction: column;
     align-items: center;
@@ -212,7 +223,7 @@ button[type="submit"] {
     width: 100%;
     margin-bottom: 1rem;
   }
-}
+} */
 
 .fa-solid{
   margin-top: 15;

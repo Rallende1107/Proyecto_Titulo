@@ -2,26 +2,20 @@
 {% extends 'index.html' %}
 {% load static %}
 
-{% block content %}
 <h1></h1>
-  {% block title %}{{ title }}{% endblock title %}
+{% block title %}{{ title }}{% endblock title %}
 
-  {% block head %}
-  <link rel="stylesheet" href="{% static 'css/estilo.css' %}?v=29" />
-  {% endblock head %}
+{% block head %}
+{% endblock head %}
 
-  <div class="container">
-    <h1>{{ title }}</h1>
-
-
+{% block content %}
+    <h1 class="mytitle">{{ title }}</h1>
     <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <h1></h1>
-      <button type="submit">Registrar</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Registrar</button>
     </form>
-  </div>
-{% endblock content %}
+{% endblock %}
 
 {% block javascript %}
   <!-- Aquí puedes incluir cualquier script adicional si es necesario -->
