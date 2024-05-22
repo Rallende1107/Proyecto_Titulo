@@ -122,7 +122,11 @@ footer{
   margin: 0; /* Elimina los márgenes */
 }
 
-
+.error_messages{
+  text-align: center;
+  color: #829930; /* Cambia a blanco */
+  margin: 0; /* Elimina los márgenes */
+}
 
 
 

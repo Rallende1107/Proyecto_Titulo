@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Apps
     'apps.haypan',
+    # ...
     'rest_framework',
     'simple_history',
 
