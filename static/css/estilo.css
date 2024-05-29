@@ -2,16 +2,19 @@ html * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Courier New', monospace;
+  font-family: 'robot', monospace;
   /* font-family: 'Roboto', sans-serif; */
    /* Letra */
 }
 
 body {
-  background-image: url('../img/pixlr-image-generator-caa1c658-b157-4ea7-915e-f2afb5cec9b8.webp');
-  background-repeat: no-repeat;
+  background-image: url('../img/HAY.webp');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center; /* Centra la imagen vertical y horizontalmente */
 }
+
 
 h1 { font-size: 3.5em; }
 h2 { font-size: 2.7em; }
@@ -21,32 +24,35 @@ p { font-size:1em; }
 a { text-decoration: none;}
 ul, li { list-style: none; }
 
-footer{
+
+footer {
   background-color: #000000;
-  color: #FFFFFF;
+  color: #3422a4;
+  padding: 20px; /* Agrega un relleno para separar el contenido del borde */
 }
-.about-us{
-  display: flex; justify-content: flex-start; align-items: center; padding: 0.1px;
+
+.about-us {
+  display: flex;
+  justify-content: center; /* Cambiado a "center" para centrar el contenido */
+  align-items: center;
+  flex-wrap: wrap; /* Para que los elementos se envuelvan si no caben en una sola línea */
 }
-.about-us-pa{
+
+.about-us-pa {
   margin-left: 20px;
+  margin-top: 10px; /* Agrega un margen superior para separar los elementos */
 }
 
-
-/* img {
-  max-width: 100%;
-  height: auto;
-} */
-/* Estilo general para la navbar */
+lo general para la navbar */
 .navbar {
   background-color: #000; /* Fondo negro para la navbar */
-  color: #fff; /* Texto blanco para la navbar */
+  color: #15a9db; /* Texto blanco para la navbar */
 }
 
 /* Estilo para los enlaces de la navbar */
 .navbar .nav-link,
 .navbar .navbar-brand {
-  color: #fff; /* Texto blanco para los enlaces y el brand */
+  color: #15a9db; /* Texto blanco para los enlaces y el brand */
 }
 
 .navbar .nav-link:hover,
@@ -86,14 +92,6 @@ footer{
 }
 
 
-/* .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 50vh;
-} */
-
 .white-square {
   background-color: rgb(75, 15, 152);
   padding: 10px;
@@ -124,7 +122,7 @@ footer{
 
 .error_messages{
   text-align: center;
-  color: #829930; /* Cambia a blanco */
+  color: #d71717; /* Cambia a blanco */
   margin: 0; /* Elimina los márgenes */
 }
 
@@ -133,7 +131,7 @@ footer{
 h2, p {
   font-size: 1.0rem;
   font-weight: bold;
-  color: hsla(185, 55%, 87%, 0.971);
+  color: #15a9db;
   margin-bottom: 2rem;
 }
 
@@ -143,11 +141,22 @@ form {
 }
 
 label {
-  font-size: 0.9rem;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.0rem;
   font-weight: bold;
-  color: #f0f7f8;
+  font-style: italic;
+  color: #1b25ddf2;
   margin-bottom: 0.5rem;
-}
+  background-color: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente */
+  border-radius: 10px; /* Bordes redondeados */
+  backdrop-filter: blur(10px); /* Desenfoque */
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin-top: 20px; /* Agrega espacio desde arriba */
+  }
+
 
 input[type="text"],
 input[type="password"] {
@@ -163,13 +172,13 @@ button[type="submit"] {
   border-radius: 5px;
   border: none;
   background-color: #e6efe6;
-  color: rgb(15, 16, 15);
+  color: rgb(10, 214, 207);
   font-size: 1.1rem;
   cursor: pointer;
 }
 
 button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #1aa0e8;
 }
 
 footer {
@@ -190,51 +199,43 @@ button[type="submit"] {
   margin-top: 20px;
 }
 
-
-
-/* Estilos para pantallas más pequeñas que 576px (como teléfonos móviles en orientación vertical) */
-@media (max-width: 575.98px) {
-  /* Agrega tus estilos específicos para pantallas pequeñas aquí */
-}
-
-/* Estilos para pantallas medianas de 576px a 767.98px (como teléfonos móviles en orientación horizontal y tabletas) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-  /* Agrega tus estilos específicos para pantallas medianas aquí */
-}
-
-/* Estilos para pantallas grandes de 768px a 991.98px (como tabletas en orientación horizontal) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-  /* Agrega tus estilos específicos para pantallas grandes aquí */
-}
-
-/* Estilos para pantallas extra grandes de 992px a 1199.98px (como pantallas de escritorio) */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  /* Agrega tus estilos específicos para pantallas extra grandes aquí */
-}
-
-/* Estilos para pantallas aún más grandes de 1200px en adelante (como pantallas de escritorio muy anchas) */
-@media (min-width: 1200px) {
-  /* Agrega tus estilos específicos para pantallas muy grandes aquí */
-}
-
-/* @media (max-width: 767.98px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .container form {
-    width: 100%;
-  }
-
-  .container input[type="text"],
-  .container input[type="password"] {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-} */
-
 .fa-solid{
   margin-top: 15;
   font-size: 2em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-content {
+  padding: 20px;
+  flex: 1; /* Ocupa todo el espacio disponible */
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+
+  .card-content {
+    padding: 10px;
+  }
+
+  .card-actions {
+    flex-wrap: wrap; /* Permite que los botones se envuelvan en líneas */
+  }
+
+  .card-action-button {
+    flex: 1 1 100%; /* Hace que cada botón ocupe una línea completa */
+  }
 }
