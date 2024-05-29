@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from apps.haypan.api.base import LoginToken,LogoutToken,UserToken
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.haypan.urls')),
-    path('usuario/', include('apps.haypan.api.urls')),
-    path('producto/', include('apps.haypan.api.routers')),
+    path('api/', include('apps.haypan.api.routers')),
+    path('loginToken/', LoginToken.as_view(),name='loginToken'),
+    path('logoutToken/', LogoutToken.as_view(), name='logoutToken'),
+    path('refresh-token/', UserToken.as_view(), name='refresh-token'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

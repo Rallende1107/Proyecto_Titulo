@@ -46,18 +46,22 @@ INSTALLED_APPS = [
     'apps.haypan',
     'rest_framework',
     'simple_history',
+    'rest_framework.authtoken',
+    'corsheaders',
 
 
 ]
-
+TOKEN_EXPIRED_AFTER_SECONDS = 900
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'projectoWeb.urls'
@@ -143,5 +147,11 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8100",
+]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:8100",
+]
 
 # LOGOUT_REDIRECT_URL = '//'
