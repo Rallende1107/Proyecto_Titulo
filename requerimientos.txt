@@ -3,3 +3,4 @@ pillow
 python-dotenv
 djangorestframework
 django-simple-history
+django-cors-headers
