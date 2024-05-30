@@ -310,7 +310,8 @@ class LocalForm(forms.ModelForm):
         )
     )
     comuna = forms.ModelChoiceField(
-        queryset=Comuna.objects.all(),
+        # queryset=Comuna.objects.all(),
+        queryset=Comuna.objects.all().order_by('nombre'),  # Ordenar las comunas alfabéticamente por su nombre
         label='Comuna',
         widget=forms.Select(
             attrs={

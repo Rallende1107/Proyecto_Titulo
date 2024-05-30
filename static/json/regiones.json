@@ -1,0 +1,1607 @@
+[
+  {
+    "region": {
+      "nombre": "Región de Arica y Parinacota",
+      "latitud": -18.4783,
+      "longitud": -70.3126
+    },
+    "comunas": [
+      {
+        "nombre": "Arica",
+        "latitud": -18.4783,
+        "longitud": -70.3126
+      },
+      {
+        "nombre": "Camarones",
+        "latitud": -19.2091,
+        "longitud": -69.4785
+      },
+      {
+        "nombre": "Putre",
+        "latitud": -18.1953,
+        "longitud": -69.5591
+      },
+      {
+        "nombre": "General Lagos",
+        "latitud": -17.5,
+        "longitud": -69.5667
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Tarapacá",
+      "latitud": -20.2133,
+      "longitud": -70.1513
+    },
+    "comunas": [
+      {
+        "nombre": "Iquique",
+        "latitud": -20.2141,
+        "longitud": -70.1525
+      },
+      {
+        "nombre": "Alto Hospicio",
+        "latitud": -20.2687,
+        "longitud": -70.1057
+      },
+      {
+        "nombre": "Pozo Almonte",
+        "latitud": -20.2542,
+        "longitud": -69.7874
+      },
+      {
+        "nombre": "Camiña",
+        "latitud": -19.2687,
+        "longitud": -69.4333
+      },
+      {
+        "nombre": "Colchane",
+        "latitud": -19.28,
+        "longitud": -68.6417
+      },
+      {
+        "nombre": "Huara",
+        "latitud": -19.9972,
+        "longitud": -69.7764
+      },
+      {
+        "nombre": "Pica",
+        "latitud": -20.4992,
+        "longitud": -69.3296
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Antofagasta",
+      "latitud": -23.65,
+      "longitud": -70.4
+    },
+    "comunas": [
+      {
+        "nombre": "Antofagasta",
+        "latitud": -23.6524,
+        "longitud": -70.3954
+      },
+      {
+        "nombre": "Mejillones",
+        "latitud": -23.0986,
+        "longitud": -70.4506
+      },
+      {
+        "nombre": "Taltal",
+        "latitud": -25.4057,
+        "longitud": -70.4863
+      },
+      {
+        "nombre": "Calama",
+        "latitud": -22.4572,
+        "longitud": -68.9294
+      },
+      {
+        "nombre": "Ollagüe",
+        "latitud": -21.22,
+        "longitud": -68.2533
+      },
+      {
+        "nombre": "San Pedro de Atacama",
+        "latitud": -22.9156,
+        "longitud": -68.1997
+      },
+      {
+        "nombre": "Tocopilla",
+        "latitud": -22.0914,
+        "longitud": -70.1979
+      },
+      {
+        "nombre": "María Elena",
+        "latitud": -22.3539,
+        "longitud": -69.6683
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Atacama",
+      "latitud": -27.3667,
+      "longitud": -70.3333
+    },
+    "comunas": [
+      {
+        "nombre": "Copiapó",
+        "latitud": -27.3667,
+        "longitud": -70.3333
+      },
+      {
+        "nombre": "Caldera",
+        "latitud": -27.0667,
+        "longitud": -70.8167
+      },
+      {
+        "nombre": "Tierra Amarilla",
+        "latitud": -27.47,
+        "longitud": -70.275
+      },
+      {
+        "nombre": "Chañaral",
+        "latitud": -26.35,
+        "longitud": -70.6167
+      },
+      {
+        "nombre": "Diego de Almagro",
+        "latitud": -26.3667,
+        "longitud": -70.05
+      },
+      {
+        "nombre": "Vallenar",
+        "latitud": -28.5767,
+        "longitud": -70.7583
+      },
+      {
+        "nombre": "Freirina",
+        "latitud": -28.5,
+        "longitud": -71.0833
+      },
+      {
+        "nombre": "Huasco",
+        "latitud": -28.4567,
+        "longitud": -71.22
+      },
+      {
+        "nombre": "Alto del Carmen",
+        "latitud": -28.61,
+        "longitud": -70.65
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Coquimbo",
+      "latitud": -29.9533,
+      "longitud": -71.3389
+    },
+    "comunas": [
+      {
+        "nombre": "La Serena",
+        "latitud": -29.905,
+        "longitud": -71.2482
+      },
+      {
+        "nombre": "Coquimbo",
+        "latitud": -29.9533,
+        "longitud": -71.3389
+      },
+      {
+        "nombre": "Andacollo",
+        "latitud": -30.2294,
+        "longitud": -71.085
+      },
+      {
+        "nombre": "La Higuera",
+        "latitud": -29.4992,
+        "longitud": -71.2278
+      },
+      {
+        "nombre": "Paiguano",
+        "latitud": -30.0378,
+        "longitud": -70.5172
+      },
+      {
+        "nombre": "Vicuña",
+        "latitud": -30.0299,
+        "longitud": -70.7083
+      },
+      {
+        "nombre": "Illapel",
+        "latitud": -31.6308,
+        "longitud": -71.1694
+      },
+      {
+        "nombre": "Canela",
+        "latitud": -31.4094,
+        "longitud": -71.4561
+      },
+      {
+        "nombre": "Los Vilos",
+        "latitud": -31.9103,
+        "longitud": -71.5072
+      },
+      {
+        "nombre": "Salamanca",
+        "latitud": -31.7797,
+        "longitud": -70.9725
+      },
+      {
+        "nombre": "Ovalle",
+        "latitud": -30.5986,
+        "longitud": -71.1994
+      },
+      {
+        "nombre": "Combarbalá",
+        "latitud": -31.1825,
+        "longitud": -70.9994
+      },
+      {
+        "nombre": "Monte Patria",
+        "latitud": -30.6939,
+        "longitud": -70.9381
+      },
+      {
+        "nombre": "Punitaqui",
+        "latitud": -30.8431,
+        "longitud": -71.2567
+      },
+      {
+        "nombre": "Río Hurtado",
+        "latitud": -30.3522,
+        "longitud": -70.6694
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Valparaíso",
+      "latitud": -33.0472,
+      "longitud": -71.6127
+    },
+    "comunas": [
+      {
+        "nombre": "Valparaíso",
+        "latitud": -33.0472,
+        "longitud": -71.6127
+      },
+      {
+        "nombre": "Casablanca",
+        "latitud": -33.3213,
+        "longitud": -71.4074
+      },
+      {
+        "nombre": "Concón",
+        "latitud": -32.9211,
+        "longitud": -71.5078
+      },
+      {
+        "nombre": "Juan Fernández",
+        "latitud": -33.635,
+        "longitud": -78.8347
+      },
+      {
+        "nombre": "Puchuncaví",
+        "latitud": -32.7283,
+        "longitud": -71.4144
+      },
+      {
+        "nombre": "Quintero",
+        "latitud": -32.7858,
+        "longitud": -71.5269
+      },
+      {
+        "nombre": "Viña del Mar",
+        "latitud": -33.0153,
+        "longitud": -71.55
+      },
+      {
+        "nombre": "Isla de Pascua",
+        "latitud": -27.1255,
+        "longitud": -109.3497
+      },
+      {
+        "nombre": "Los Andes",
+        "latitud": -32.8332,
+        "longitud": -70.5981
+      },
+      {
+        "nombre": "Calle Larga",
+        "latitud": -32.8508,
+        "longitud": -70.5858
+      },
+      {
+        "nombre": "Rinconada",
+        "latitud": -32.8332,
+        "longitud": -70.7331
+      },
+      {
+        "nombre": "San Esteban",
+        "latitud": -32.75,
+        "longitud": -70.5833
+      },
+      {
+        "nombre": "La Ligua",
+        "latitud": -32.4528,
+        "longitud": -71.2319
+      },
+      {
+        "nombre": "Cabildo",
+        "latitud": -32.4242,
+        "longitud": -71.065
+      },
+      {
+        "nombre": "Papudo",
+        "latitud": -32.5058,
+        "longitud": -71.4428
+      },
+      {
+        "nombre": "Petorca",
+        "latitud": -32.2533,
+        "longitud": -70.9319
+      },
+      {
+        "nombre": "Zapallar",
+        "latitud": -32.545,
+        "longitud": -71.4528
+      },
+      {
+        "nombre": "Quillota",
+        "latitud": -32.8806,
+        "longitud": -71.2481
+      },
+      {
+        "nombre": "Calera",
+        "latitud": -32.787,
+        "longitud": -71.2142
+      },
+      {
+        "nombre": "Hijuelas",
+        "latitud": -32.7525,
+        "longitud": -71.1694
+      },
+      {
+        "nombre": "La Cruz",
+        "latitud": -32.8328,
+        "longitud": -71.2186
+      },
+      {
+        "nombre": "Nogales",
+        "latitud": -32.7306,
+        "longitud": -71.2008
+      },
+      {
+        "nombre": "San Antonio",
+        "latitud": -33.5867,
+        "longitud": -71.6092
+      },
+      {
+        "nombre": "Algarrobo",
+        "latitud": -33.3647,
+        "longitud": -71.6697
+      },
+      {
+        "nombre": "Cartagena",
+        "latitud": -33.5481,
+        "longitud": -71.6075
+      },
+      {
+        "nombre": "El Quisco",
+        "latitud": -33.3994,
+        "longitud": -71.6983
+      },
+      {
+        "nombre": "El Tabo",
+        "latitud": -33.4475,
+        "longitud": -71.6583
+      },
+      {
+        "nombre": "Santo Domingo",
+        "latitud": -33.635,
+        "longitud": -71.6097
+      },
+      {
+        "nombre": "San Felipe",
+        "latitud": -32.7517,
+        "longitud": -70.725
+      },
+      {
+        "nombre": "Catemu",
+        "latitud": -32.78,
+        "longitud": -70.9397
+      },
+      {
+        "nombre": "Llaillay",
+        "latitud": -32.8417,
+        "longitud": -70.9561
+      },
+      {
+        "nombre": "Panquehue",
+        "latitud": -32.8125,
+        "longitud": -70.8353
+      },
+      {
+        "nombre": "Putaendo",
+        "latitud": -32.6253,
+        "longitud": -70.7286
+      },
+      {
+        "nombre": "Santa María",
+        "latitud": -32.7842,
+        "longitud": -70.6297
+      },
+      {
+        "nombre": "Quilpué",
+        "latitud": -33.0472,
+        "longitud": -71.6127
+      },
+      {
+        "nombre": "Limache",
+        "latitud": -33.0167,
+        "longitud": -71.2667
+      },
+      {
+        "nombre": "Olmué",
+        "latitud": -32.9967,
+        "longitud": -71.1833
+      },
+      {
+        "nombre": "Villa Alemana",
+        "latitud": -33.0472,
+        "longitud": -71.3736
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región del Libertador General Bernardo O'Higgins",
+      "latitud": -34.575,
+      "longitud": -70.9722
+    },
+    "comunas": [
+      {
+        "nombre": "Rancagua",
+        "latitud": -34.165,
+        "longitud": -70.7396
+      },
+      {
+        "nombre": "Codegua",
+        "latitud": -34.0333,
+        "longitud": -70.7
+      },
+      {
+        "nombre": "Coinco",
+        "latitud": -34.2833,
+        "longitud": -70.9667
+      },
+      {
+        "nombre": "Coltauco",
+        "latitud": -34.2922,
+        "longitud": -71.0767
+      },
+      {
+        "nombre": "Doñihue",
+        "latitud": -34.2167,
+        "longitud": -70.9167
+      },
+      {
+        "nombre": "Graneros",
+        "latitud": -34.0706,
+        "longitud": -70.7222
+      },
+      {
+        "nombre": "Las Cabras",
+        "latitud": -34.2939,
+        "longitud": -71.2972
+      },
+      {
+        "nombre": "Machalí",
+        "latitud": -34.1833,
+        "longitud": -70.6667
+      },
+      {
+        "nombre": "Malloa",
+        "latitud": -34.5019,
+        "longitud": -70.9722
+      },
+      {
+        "nombre": "Mostazal",
+        "latitud": -33.9833,
+        "longitud": -70.7167
+      },
+      {
+        "nombre": "Olivar",
+        "latitud": -34.2011,
+        "longitud": -70.7722
+      },
+      {
+        "nombre": "Peumo",
+        "latitud": -34.3944,
+        "longitud": -71.1667
+      },
+      {
+        "nombre": "Pichidegua",
+        "latitud": -34.3833,
+        "longitud": -71.2833
+      },
+      {
+        "nombre": "Quinta de Tilcoco",
+        "latitud": -34.3458,
+        "longitud": -70.9964
+      },
+      {
+        "nombre": "Rengo",
+        "latitud": -34.4089,
+        "longitud": -70.8572
+      },
+      {
+        "nombre": "Requínoa",
+        "latitud": -34.2806,
+        "longitud": -70.8333
+      },
+      {
+        "nombre": "San Vicente",
+        "latitud": -34.5333,
+        "longitud": -71.2
+      },
+      {
+        "nombre": "Pichilemu",
+        "latitud": -34.3833,
+        "longitud": -72.0
+      },
+      {
+        "nombre": "La Estrella",
+        "latitud": -34.3167,
+        "longitud": -71.7833
+      },
+      {
+        "nombre": "Litueche",
+        "latitud": -34.15,
+        "longitud": -71.7694
+      },
+      {
+        "nombre": "Marchigüe",
+        "latitud": -34.3833,
+        "longitud": -71.6333
+      },
+      {
+        "nombre": "Navidad",
+        "latitud": -33.95,
+        "longitud": -71.8333
+      },
+      {
+        "nombre": "Paredones",
+        "latitud": -34.6,
+        "longitud": -72.0
+      },
+      {
+        "nombre": "San Fernando",
+        "latitud": -34.5833,
+        "longitud": -70.9667
+      },
+      {
+        "nombre": "Chépica",
+        "latitud": -34.725,
+        "longitud": -71.2167
+      },
+      {
+        "nombre": "Chimbarongo",
+        "latitud": -34.7172,
+        "longitud": -71.05
+      },
+      {
+        "nombre": "Lolol",
+        "latitud": -34.7167,
+        "longitud": -71.6167
+      },
+      {
+        "nombre": "Nancagua",
+        "latitud": -34.65,
+        "longitud": -71.2
+      },
+      {
+        "nombre": "Palmilla",
+        "latitud": -34.5667,
+        "longitud": -71.2167
+      },
+      {
+        "nombre": "Peralillo",
+        "latitud": -34.5833,
+        "longitud": -71.45
+      },
+      {
+        "nombre": "Placilla",
+        "latitud": -34.5833,
+        "longitud": -71.3333
+      },
+      {
+        "nombre": "Pumanque",
+        "latitud": -34.7167,
+        "longitud": -71.6333
+      },
+      {
+        "nombre": "Santa Cruz",
+        "latitud": -34.6406,
+        "longitud": -71.3667
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región del Maule",
+      "latitud": -35.6751,
+      "longitud": -71.543
+    },
+    "comunas": [
+      {
+        "nombre": "Talca",
+        "latitud": -35.4264,
+        "longitud": -71.6483
+      },
+      {
+        "nombre": "Constitución",
+        "latitud": -35.3333,
+        "longitud": -72.4167
+      },
+      {
+        "nombre": "Curepto",
+        "latitud": -35.0739,
+        "longitud": -72.0167
+      },
+      {
+        "nombre": "Empedrado",
+        "latitud": -35.6167,
+        "longitud": -72.2333
+      },
+      {
+        "nombre": "Maule",
+        "latitud": -35.4767,
+        "longitud": -71.6742
+      },
+      {
+        "nombre": "Pelarco",
+        "latitud": -35.4306,
+        "longitud": -71.2833
+      },
+      {
+        "nombre": "Pencahue",
+        "latitud": -35.25,
+        "longitud": -71.2833
+      },
+      {
+        "nombre": "Río Claro",
+        "latitud": -35.2833,
+        "longitud": -71.2667
+      },
+      {
+        "nombre": "San Clemente",
+        "latitud": -35.55,
+        "longitud": -71.4833
+      },
+      {
+        "nombre": "San Rafael",
+        "latitud": -35.3,
+        "longitud": -71.8
+      },
+      {
+        "nombre": "Cauquenes",
+        "latitud": -35.9667,
+        "longitud": -72.3167
+      },
+      {
+        "nombre": "Chanco",
+        "latitud": -35.7242,
+        "longitud": -72.5075
+      },
+      {
+        "nombre": "Pelluhue",
+        "latitud": -35.8264,
+        "longitud": -72.7131
+      },
+      {
+        "nombre": "Curicó",
+        "latitud": -34.9833,
+        "longitud": -71.2333
+      },
+      {
+        "nombre": "Hualañé",
+        "latitud": -34.9833,
+        "longitud": -71.7333
+      },
+      {
+        "nombre": "Licantén",
+        "latitud": -34.9833,
+        "longitud": -72.0167
+      },
+      {
+        "nombre": "Molina",
+        "latitud": -35.1167,
+        "longitud": -71.2833
+      },
+      {
+        "nombre": "Rauco",
+        "latitud": -34.9833,
+        "longitud": -71.35
+      },
+      {
+        "nombre": "Romeral",
+        "latitud": -34.9833,
+        "longitud": -71.15
+      },
+      {
+        "nombre": "Sagrada Familia",
+        "latitud": -34.9833,
+        "longitud": -71.6167
+      },
+      {
+        "nombre": "Teno",
+        "latitud": -34.8833,
+        "longitud": -71.1667
+      },
+      {
+        "nombre": "Vichuquén",
+        "latitud": -34.9833,
+        "longitud": -72.2333
+      },
+      {
+        "nombre": "Linares",
+        "latitud": -35.85,
+        "longitud": -71.6
+      },
+      {
+        "nombre": "Colbún",
+        "latitud": -35.7064,
+        "longitud": -71.4167
+      },
+      {
+        "nombre": "Longaví",
+        "latitud": -35.9667,
+        "longitud": -71.5167
+      },
+      {
+        "nombre": "Parral",
+        "latitud": -36.15,
+        "longitud": -71.8333
+      },
+      {
+        "nombre": "Retiro",
+        "latitud": -36.05,
+        "longitud": -71.75
+      },
+      {
+        "nombre": "San Javier",
+        "latitud": -35.9167,
+        "longitud": -71.75
+      },
+      {
+        "nombre": "Villa Alegre",
+        "latitud": -35.6667,
+        "longitud": -72.0
+      },
+      {
+        "nombre": "Yerbas Buenas",
+        "latitud": -35.8833,
+        "longitud": -71.6167
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región del Biobío",
+      "latitud": -37.4467,
+      "longitud": -72.3522
+    },
+    "comunas": [
+      {
+        "nombre": "Concepción",
+        "latitud": -36.82,
+        "longitud": -73.0444
+      },
+      {
+        "nombre": "Coronel",
+        "latitud": -37.0167,
+        "longitud": -73.1333
+      },
+      {
+        "nombre": "Chiguayante",
+        "latitud": -36.92,
+        "longitud": -73.0167
+      },
+      {
+        "nombre": "Florida",
+        "latitud": -36.82,
+        "longitud": -72.6333
+      },
+      {
+        "nombre": "Hualpén",
+        "latitud": -36.7833,
+        "longitud": -73.1333
+      },
+      {
+        "nombre": "Hualqui",
+        "latitud": -36.97,
+        "longitud": -72.9333
+      },
+      {
+        "nombre": "Lota",
+        "latitud": -37.0833,
+        "longitud": -73.15
+      },
+      {
+        "nombre": "Penco",
+        "latitud": -36.7333,
+        "longitud": -72.9833
+      },
+      {
+        "nombre": "San Pedro de la Paz",
+        "latitud": -36.8267,
+        "longitud": -73.1167
+      },
+      {
+        "nombre": "Santa Juana",
+        "latitud": -37.16,
+        "longitud": -72.95
+      },
+      {
+        "nombre": "Talcahuano",
+        "latitud": -36.7167,
+        "longitud": -73.1167
+      },
+      {
+        "nombre": "Tomé",
+        "latitud": -36.625,
+        "longitud": -72.95
+      },
+      {
+        "nombre": "Hualqui",
+        "latitud": -36.97,
+        "longitud": -72.9333
+      },
+      {
+        "nombre": "Lebu",
+        "latitud": -37.6,
+        "longitud": -73.65
+      },
+      {
+        "nombre": "Arauco",
+        "latitud": -37.2469,
+        "longitud": -73.3167
+      },
+      {
+        "nombre": "Cañete",
+        "latitud": -37.8,
+        "longitud": -73.4
+      },
+      {
+        "nombre": "Contulmo",
+        "latitud": -38.1167,
+        "longitud": -73.2333
+      },
+      {
+        "nombre": "Curanilahue",
+        "latitud": -37.4722,
+        "longitud": -73.35
+      },
+      {
+        "nombre": "Los Álamos",
+        "latitud": -37.8,
+        "longitud": -73.5
+      },
+      {
+        "nombre": "Tirúa",
+        "latitud": -38.35,
+        "longitud": -73.5167
+      },
+      {
+        "nombre": "Los Ángeles",
+        "latitud": -37.4667,
+        "longitud": -72.35
+      },
+      {
+        "nombre": "Antuco",
+        "latitud": -37.4125,
+        "longitud": -71.7222
+      },
+      {
+        "nombre": "Cabrero",
+        "latitud": -37.0333,
+        "longitud": -72.4
+      },
+      {
+        "nombre": "Laja",
+        "latitud": -37.2667,
+        "longitud": -72.7
+      },
+      {
+        "nombre": "Mulchén",
+        "latitud": -37.7167,
+        "longitud": -72.2333
+      },
+      {
+        "nombre": "Nacimiento",
+        "latitud": -37.5,
+        "longitud": -72.6667
+      },
+      {
+        "nombre": "Negrete",
+        "latitud": -37.5833,
+        "longitud": -72.5833
+      },
+      {
+        "nombre": "Quilaco",
+        "latitud": -37.6167,
+        "longitud": -72.4667
+      },
+      {
+        "nombre": "Quilleco",
+        "latitud": -37.6,
+        "longitud": -72.4667
+      },
+      {
+        "nombre": "San Rosendo",
+        "latitud": -37.8,
+        "longitud": -72.7167
+      },
+      {
+        "nombre": "Santa Bárbara",
+        "latitud": -37.6167,
+        "longitud": -72.0167
+      },
+      {
+        "nombre": "Tucapel",
+        "latitud": -37.2833,
+        "longitud": -71.9667
+      },
+      {
+        "nombre": "Yumbel",
+        "latitud": -37.0833,
+        "longitud": -72.5667
+      },
+      {
+        "nombre": "Alto Biobío",
+        "latitud": -37.7167,
+        "longitud": -71.6
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de la Araucanía",
+      "latitud": -38.7368,
+      "longitud": -72.5903
+    },
+    "comunas": [
+      {
+        "nombre": "Temuco",
+        "latitud": -38.7333,
+        "longitud": -72.6
+      },
+      {
+        "nombre": "Carahue",
+        "latitud": -38.7,
+        "longitud": -73.1667
+      },
+      {
+        "nombre": "Cunco",
+        "latitud": -38.9833,
+        "longitud": -72.0333
+      },
+      {
+        "nombre": "Curarrehue",
+        "latitud": -39.1833,
+        "longitud": -71.6167
+      },
+      {
+        "nombre": "Freire",
+        "latitud": -38.95,
+        "longitud": -72.6333
+      },
+      {
+        "nombre": "Galvarino",
+        "latitud": -38.4,
+        "longitud": -72.5
+      },
+      {
+        "nombre": "Gorbea",
+        "latitud": -39.15,
+        "longitud": -72.6833
+      },
+      {
+        "nombre": "Lautaro",
+        "latitud": -38.5167,
+        "longitud": -72.7167
+      },
+      {
+        "nombre": "Loncoche",
+        "latitud": -39.3679,
+        "longitud": -72.6339
+      },
+      {
+        "nombre": "Melipeuco",
+        "latitud": -38.7667,
+        "longitud": -71.6833
+      },
+      {
+        "nombre": "Nueva Imperial",
+        "latitud": -38.7333,
+        "longitud": -72.95
+      },
+      {
+        "nombre": "Padre Las Casas",
+        "latitud": -38.7667,
+        "longitud": -72.6
+      },
+      {
+        "nombre": "Perquenco",
+        "latitud": -38.4167,
+        "longitud": -72.7333
+      },
+      {
+        "nombre": "Pitrufquén",
+        "latitud": -38.9833,
+        "longitud": -72.6333
+      },
+      {
+        "nombre": "Pucón",
+        "latitud": -39.2667,
+        "longitud": -71.9667
+      },
+      {
+        "nombre": "Saavedra",
+        "latitud": -38.7833,
+        "longitud": -73.4
+      },
+      {
+        "nombre": "Teodoro Schmidt",
+        "latitud": -38.8167,
+        "longitud": -72.7167
+      },
+      {
+        "nombre": "Toltén",
+        "latitud": -39.2167,
+        "longitud": -73.2
+      },
+      {
+        "nombre": "Vilcún",
+        "latitud": -38.65,
+        "longitud": -72.55
+      },
+      {
+        "nombre": "Villarrica",
+        "latitud": -39.2833,
+        "longitud": -72.2167
+      },
+      {
+        "nombre": "Cholchol",
+        "latitud": -38.5667,
+        "longitud": -72.9833
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Los Ríos",
+      "latitud": -39.795,
+      "longitud": -72.6314
+    },
+    "comunas": [
+      {
+        "nombre": "Valdivia",
+        "latitud": -39.8142,
+        "longitud": -73.2459
+      },
+      {
+        "nombre": "Corral",
+        "latitud": -39.8833,
+        "longitud": -73.4167
+      },
+      {
+        "nombre": "Lanco",
+        "latitud": -39.4333,
+        "longitud": -72.8333
+      },
+      {
+        "nombre": "Los Lagos",
+        "latitud": -39.8833,
+        "longitud": -72.8167
+      },
+      {
+        "nombre": "Máfil",
+        "latitud": -39.6333,
+        "longitud": -72.95
+      },
+      {
+        "nombre": "Mariquina",
+        "latitud": -39.55,
+        "longitud": -72.9
+      },
+      {
+        "nombre": "Paillaco",
+        "latitud": -40.0667,
+        "longitud": -72.7333
+      },
+      {
+        "nombre": "Panguipulli",
+        "latitud": -39.6333,
+        "longitud": -72.3333
+      },
+      {
+        "nombre": "La Unión",
+        "latitud": -40.3,
+        "longitud": -73.0833
+      },
+      {
+        "nombre": "Futrono",
+        "latitud": -40.15,
+        "longitud": -72.3667
+      },
+      {
+        "nombre": "Lago Ranco",
+        "latitud": -40.3333,
+        "longitud": -72.9333
+      },
+      {
+        "nombre": "Río Bueno",
+        "latitud": -40.3167,
+        "longitud": -72.9667
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Los Lagos",
+      "latitud": -41.6295,
+      "longitud": -73.0817
+    },
+    "comunas": [
+      {
+        "nombre": "Puerto Montt",
+        "latitud": -41.4719,
+        "longitud": -72.9399
+      },
+      {
+        "nombre": "Calbuco",
+        "latitud": -41.7736,
+        "longitud": -73.1275
+      },
+      {
+        "nombre": "Cochamó",
+        "latitud": -41.4795,
+        "longitud": -72.3912
+      },
+      {
+        "nombre": "Fresia",
+        "latitud": -41.5269,
+        "longitud": -73.4486
+      },
+      {
+        "nombre": "Frutillar",
+        "latitud": -41.125,
+        "longitud": -73.05
+      },
+      {
+        "nombre": "Los Muermos",
+        "latitud": -41.3828,
+        "longitud": -73.5486
+      },
+      {
+        "nombre": "Llanquihue",
+        "latitud": -41.2689,
+        "longitud": -73.0092
+      },
+      {
+        "nombre": "Maullín",
+        "latitud": -41.6167,
+        "longitud": -73.6
+      },
+      {
+        "nombre": "Puerto Varas",
+        "latitud": -41.3167,
+        "longitud": -72.9833
+      },
+      {
+        "nombre": "Castro",
+        "latitud": -42.4801,
+        "longitud": -73.7624
+      },
+      {
+        "nombre": "Ancud",
+        "latitud": -41.867,
+        "longitud": -73.8278
+      },
+      {
+        "nombre": "Chonchi",
+        "latitud": -42.6222,
+        "longitud": -73.7781
+      },
+      {
+        "nombre": "Curaco de Vélez",
+        "latitud": -42.4558,
+        "longitud": -73.7375
+      },
+      {
+        "nombre": "Dalcahue",
+        "latitud": -42.6186,
+        "longitud": -73.8106
+      },
+      {
+        "nombre": "Puqueldón",
+        "latitud": -42.5967,
+        "longitud": -73.5136
+      },
+      {
+        "nombre": "Queilén",
+        "latitud": -42.2354,
+        "longitud": -73.4568
+      },
+      {
+        "nombre": "Quellón",
+        "latitud": -43.12,
+        "longitud": -73.6
+      },
+      {
+        "nombre": "Quemchi",
+        "latitud": -42.1333,
+        "longitud": -73.4667
+      },
+      {
+        "nombre": "Quinchao",
+        "latitud": -42.5,
+        "longitud": -73.4667
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Aysén del General Carlos Ibáñez del Campo",
+      "latitud": -45.5756,
+      "longitud": -72.0662
+    },
+    "comunas": [
+      {
+        "nombre": "Coyhaique",
+        "latitud": -45.5712,
+        "longitud": -72.0682
+      },
+      {
+        "nombre": "Lago Verde",
+        "latitud": -44.9833,
+        "longitud": -71.7833
+      },
+      {
+        "nombre": "Aysén",
+        "latitud": -45.4075,
+        "longitud": -72.6906
+      },
+      {
+        "nombre": "Cisnes",
+        "latitud": -44.75,
+        "longitud": -72.8333
+      },
+      {
+        "nombre": "Guaitecas",
+        "latitud": -43.8,
+        "longitud": -73.75
+      },
+      {
+        "nombre": "Cochrane",
+        "latitud": -47.2667,
+        "longitud": -72.55
+      },
+      {
+        "nombre": "O'Higgins",
+        "latitud": -46.6167,
+        "longitud": -72.3167
+      },
+      {
+        "nombre": "Tortel",
+        "latitud": -47.8,
+        "longitud": -73.5667
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región de Magallanes y de la Antártica Chilena",
+      "latitud": -53.1625,
+      "longitud": -70.9176
+    },
+    "comunas": [
+      {
+        "nombre": "Punta Arenas",
+        "latitud": -53.1625,
+        "longitud": -70.9176
+      },
+      {
+        "nombre": "Laguna Blanca",
+        "latitud": -52.55,
+        "longitud": -71.9167
+      },
+      {
+        "nombre": "Río Verde",
+        "latitud": -52.6167,
+        "longitud": -71.9
+      },
+      {
+        "nombre": "San Gregorio",
+        "latitud": -52.3333,
+        "longitud": -71.4
+      },
+      {
+        "nombre": "Cabo de Hornos (Ex Navarino)",
+        "latitud": -55.0,
+        "longitud": -67.5
+      },
+      {
+        "nombre": "Antártica",
+        "latitud": -82.8628,
+        "longitud": -135.0
+      },
+      {
+        "nombre": "Porvenir",
+        "latitud": -53.3,
+        "longitud": -70.3667
+      },
+      {
+        "nombre": "Primavera",
+        "latitud": -52.7167,
+        "longitud": -69.2667
+      },
+      {
+        "nombre": "Timaukel",
+        "latitud": -53.0,
+        "longitud": -69.5
+      },
+      {
+        "nombre": "Natales",
+        "latitud": -51.7236,
+        "longitud": -72.4875
+      },
+      {
+        "nombre": "Torres del Paine",
+        "latitud": -50.9422,
+        "longitud": -72.5825
+      }
+    ]
+  },
+  {
+    "region": {
+      "nombre": "Región Metropolitana de Santiago",
+      "latitud": -33.4372,
+      "longitud": -70.6506
+    },
+    "comunas": [
+      {
+        "nombre": "Santiago",
+        "latitud": -33.4372,
+        "longitud": -70.6506
+      },
+      {
+        "nombre": "Puente Alto",
+        "latitud": -33.6117,
+        "longitud": -70.5758
+      },
+      {
+        "nombre": "Maipú",
+        "latitud": -33.5165,
+        "longitud": -70.7559
+      },
+      {
+        "nombre": "La Florida",
+        "latitud": -33.5217,
+        "longitud": -70.5915
+      },
+      {
+        "nombre": "Las Condes",
+        "latitud": -33.4166,
+        "longitud": -70.5837
+      },
+      {
+        "nombre": "Quilicura",
+        "latitud": -33.3612,
+        "longitud": -70.7292
+      },
+      {
+        "nombre": "Ñuñoa",
+        "latitud": -33.4543,
+        "longitud": -70.6008
+      },
+      {
+        "nombre": "Pudahuel",
+        "latitud": -33.4442,
+        "longitud": -70.7649
+      },
+      {
+        "nombre": "Conchalí",
+        "latitud": -33.3884,
+        "longitud": -70.6751
+      },
+      {
+        "nombre": "Providencia",
+        "latitud": -33.4312,
+        "longitud": -70.6095
+      },
+      {
+        "nombre": "La Pintana",
+        "latitud": -33.5817,
+        "longitud": -70.6287
+      },
+      {
+        "nombre": "Peñalolén",
+        "latitud": -33.485,
+        "longitud": -70.5409
+      },
+      {
+        "nombre": "La Granja",
+        "latitud": -33.5389,
+        "longitud": -70.6264
+      },
+      {
+        "nombre": "Lo Prado",
+        "latitud": -33.4446,
+        "longitud": -70.724
+      },
+      {
+        "nombre": "El Bosque",
+        "latitud": -33.5628,
+        "longitud": -70.6764
+      },
+      {
+        "nombre": "Cerrillos",
+        "latitud": -33.5044,
+        "longitud": -70.7035
+      },
+      {
+        "nombre": "La Reina",
+        "latitud": -33.4496,
+        "longitud": -70.533
+      },
+      {
+        "nombre": "Estación Central",
+        "latitud": -33.4583,
+        "longitud": -70.7052
+      },
+      {
+        "nombre": "Huechuraba",
+        "latitud": -33.3638,
+        "longitud": -70.6485
+      },
+      {
+        "nombre": "Independencia",
+        "latitud": -33.4169,
+        "longitud": -70.6548
+      },
+      {
+        "nombre": "Lo Barnechea",
+        "latitud": -33.35,
+        "longitud": -70.5167
+      },
+      {
+        "nombre": "Macul",
+        "latitud": -33.485,
+        "longitud": -70.6
+      },
+      {
+        "nombre": "San Bernardo",
+        "latitud": -33.5922,
+        "longitud": -70.6996
+      },
+      {
+        "nombre": "San Joaquín",
+        "latitud": -33.4933,
+        "longitud": -70.6289
+      },
+      {
+        "nombre": "San Miguel",
+        "latitud": -33.4926,
+        "longitud": -70.6521
+      },
+      {
+        "nombre": "San Ramón",
+        "latitud": -33.5419,
+        "longitud": -70.6501
+      },
+      {
+        "nombre": "Vitacura",
+        "latitud": -33.3964,
+        "longitud": -70.5946
+      },
+      {
+        "nombre": "Padre Hurtado",
+        "latitud": -33.5667,
+        "longitud": -70.8167
+      },
+      {
+        "nombre": "Buin",
+        "latitud": -33.7333,
+        "longitud": -70.75
+      },
+      {
+        "nombre": "Calera de Tango",
+        "latitud": -33.63,
+        "longitud": -70.8447
+      },
+      {
+        "nombre": "Colina",
+        "latitud": -33.2,
+        "longitud": -70.6667
+      },
+      {
+        "nombre": "Lampa",
+        "latitud": -33.2833,
+        "longitud": -70.875
+      },
+      {
+        "nombre": "San José de Maipo",
+        "latitud": -33.6,
+        "longitud": -70.25
+      },
+      {
+        "nombre": "Talagante",
+        "latitud": -33.6667,
+        "longitud": -70.9333
+      },
+      {
+        "nombre": "Pirque",
+        "latitud": -33.65,
+        "longitud": -70.7167
+      },
+      {
+        "nombre": "Puente Alto",
+        "latitud": -33.6117,
+        "longitud": -70.5758
+      },
+      {
+        "nombre": "Padre Hurtado",
+        "latitud": -33.5667,
+        "longitud": -70.8167
+      },
+      {
+        "nombre": "Paine",
+        "latitud": -33.8167,
+        "longitud": -70.75
+      },
+      {
+        "nombre": "Peñaflor",
+        "latitud": -33.6167,
+        "longitud": -70.9167
+      },
+      {
+        "nombre": "Melipilla",
+        "latitud": -33.7,
+        "longitud": -71.2167
+      },
+      {
+        "nombre": "Curacaví",
+        "latitud": -33.4,
+        "longitud": -71.1333
+      },
+      {
+        "nombre": "El Monte",
+        "latitud": -33.6833,
+        "longitud": -71.0167
+      },
+      {
+        "nombre": "Alhué",
+        "latitud": -34.05,
+        "longitud": -71.2167
+      },
+      {
+        "nombre": "San Pedro",
+        "latitud": -33.9167,
+        "longitud": -71.25
+      },
+      {
+        "nombre": "Tiltil",
+        "latitud": -33.0833,
+        "longitud": -70.9333
+      }
+    ]
+  }
+]
