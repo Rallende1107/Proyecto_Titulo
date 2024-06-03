@@ -1,6 +1,8 @@
+from datetime import date, timedelta
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.forms import ValidationError
 
 
 # Create your models here.
@@ -121,3 +123,53 @@ class Producto(models.Model):
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
 
+class Reserva(models.Model):
+    numeroOrden = models.IntegerField(unique=True)
+    fechaInicio = models.DateField()
+    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'cliente': True})
+    productos = models.ManyToManyField(Producto)
+    local = models.ForeignKey(Local, on_delete=models.CASCADE)
+    
+    SOLICITADO = '1'
+    EN_ESPERA = '2'
+    RETIRADO = '3'
+    CANCELADO_CLIENTE = '4'
+    CANCELADO_COMERCIANTE = '5'
+    EXPIRADO = '6'
+    
+    TIPO_CHOICES = [
+        (SOLICITADO, 'Solicitado'),
+        (EN_ESPERA, 'En Espera'),
+        (RETIRADO, 'Retirado'),
+        (CANCELADO_CLIENTE, 'Cancelado Cliente'),
+        (CANCELADO_COMERCIANTE, 'Cancelado Comerciante'),
+        (EXPIRADO, 'Expirado'),
+    ]
+    
+    estado = models.CharField(
+        max_length=1, choices=TIPO_CHOICES, default=SOLICITADO)
+    
+    def __str__(self):
+        return f"Reserva #{self.numeroOrden}"
+    
+    def calcular_total(self):
+        total = sum(producto.precio * producto.cantidad for producto in self.productos.all())
+        return total
+    
+    def fecha_termino(self):
+        return self.fechaInicio + timedelta(days=1)
+    
+    def clean(self):
+        super().clean()
+        if self.fechaInicio < date.today():
+            raise ValidationError('La fecha de inicio no puede ser anterior a la fecha actual.')
+    
+    def save(self, *args, **kwargs):
+        self.clean()  # Llama a clean() para validar antes de guardar
+        super().save(*args, **kwargs)
+    
+    class Meta:
+        db_table = 'Reserva'
+        managed = True
+        verbose_name = 'Reserva'
+        verbose_name_plural = 'Reservas'

@@ -5,11 +5,10 @@
 {% endblock title %}
 
 {% block head %}
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.6/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/rg-1.5.0/sc-2.4.2/sb-1.7.1/sp-2.3.1/sl-2.0.1/datatables.min.css" rel="stylesheet">
-
 {% endblock head %}
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -18,33 +17,35 @@
             <div class="card">
                 <div class="card-img-container">
                     <img src="{{ elemento.get_imagen_url }}" class="card-img-top" alt="..."/>
-
-
                 </div>
                 <div class="card-body">
                     <div class="card-title">
                         <h5><strong>{{ elemento.nombre }}</strong></h5>
                     </div>
                     <div class="card-text">
-
-                        <p><strong>precio:</strong> ${{ elemento.precio }}</p>
+                        <p><strong>Precio:</strong> ${{ elemento.precio }}</p>
                         <p><strong>Stock:</strong> {{ elemento.cantidad }}</p>
-                        <p><strong>descripcion:</strong> {{ elemento.descripcion }}</p>
+                        <p><strong>Descripción:</strong> {{ elemento.descripcion }}</p>
                     </div>
+                    <form action="{% url 'cart' %}" method="get">
+                        <div class="mb-3">
+                            <label for="cantidad-{{ elemento.id }}" class="form-label"><strong>Cantidad:</strong></label>
+                            <input type="number" id="cantidad-{{ elemento.id }}" name="cantidad" value="0" min="1" max="{{ elemento.cantidad }}" class="form-control" required>
+                        </div>
+                        <input type="hidden" name="producto_id" value="{{ elemento.id }}">
+                        <button type="submit" class="btn btn-success btn-lg w-100">
+                            <i class="fa-solid fa-cart-shopping"></i> Añadir al carrito
+                        </button>
+                    </form>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-success btn-lg">
-                            <i class="fa-solid fa-cart-shopping"></i> Añadir carrito
-                        </a>
-                        <a href="#" class="btn btn-info btn-lg">
+                        <a href="#" class="btn btn-info btn-lg w-100 mt-2">
                             <i class="fas fa-eye"></i> Ver Detalles
                         </a>
-
                         <div class="d-inline">
-                            <a href="{% url 'producto_update' pk=elemento.id %}" class="btn btn-warning btn-lg">
+                            <a href="{% url 'producto_update' pk=elemento.id %}" class="btn btn-warning btn-lg mt-2">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="{% url 'producto_delete' pk=elemento.id %}" class="btn btn-danger btn-lg">
-
+                            <a href="{% url 'producto_delete' pk=elemento.id %}" class="btn btn-danger btn-lg mt-2">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                         </div>
@@ -56,18 +57,12 @@
     </div>
 </div>
 {% endblock content %}
-<!-- Bloque JS -->
+
 {% block javascript %}
-
-    {% block script %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.6/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/rg-1.5.0/sc-2.4.2/sb-1.7.1/sp-2.3.1/sl-2.0.1/datatables.min.js"></script>
-
-    {% endblock script %}
-
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.6/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/rg-1.5.0/sc-2.4.2/sb-1.7.1/sp-2.3.1/sl-2.0.1/datatables.min.js"></script>
+{% endblock script %}
 {% endblock javascript %}
-
-
-

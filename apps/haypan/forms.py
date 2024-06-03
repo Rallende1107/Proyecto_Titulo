@@ -1,6 +1,6 @@
 from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator, MaxLengthValidator
-from .models import Region, Comuna, Usuario, Familiar, Local, Producto
+from .models import Region, Comuna, Reserva, Usuario, Familiar, Local, Producto
 from django.contrib.auth.forms import UserCreationForm
 
 class RegionForm(forms.ModelForm):
@@ -421,3 +421,70 @@ class ProductoForm(forms.ModelForm):
     class Meta:
         model = Producto
         fields = ['nombre', 'descripcion', 'cantidad', 'precio', 'imagen', 'local']
+
+
+
+class ReservaForm(forms.ModelForm):
+    numeroOrden = forms.IntegerField(
+        label='Número de Orden',
+        widget=forms.NumberInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese el número de orden',
+                'type': 'number',
+                'required': True,
+                'min': 0
+            }
+        )
+    )
+    fechaInicio = forms.DateField(
+        label='Fecha de Inicio',
+        widget=forms.DateInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese la fecha de inicio',
+                'type': 'date'
+            }
+        )
+    )
+    cliente = forms.ModelChoiceField(
+        queryset=Usuario.objects.filter(cliente=True),
+        label='Cliente',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+            }
+        )
+    )
+    productos = forms.ModelMultipleChoiceField(
+        queryset=Producto.objects.all(),
+        label='Productos',
+        widget=forms.CheckboxSelectMultiple()
+    )
+    local = forms.ModelChoiceField(
+        queryset=Local.objects.all(),
+        label='Local',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+            }
+        )
+    )
+    estado = forms.ChoiceField(
+        choices=Reserva.TIPO_CHOICES,
+        label='Estado',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+            }
+        )
+    )
+
+    class Meta:
+        model = Reserva
+        fields = ['numeroOrden', 'fechaInicio', 'cliente', 'productos', 'local', 'estado']

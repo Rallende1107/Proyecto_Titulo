@@ -1,16 +1,19 @@
-from django.http import Http404
+from datetime import timezone
+from django.conf import settings
+from django.forms import ValidationError
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse, reverse_lazy
 from django.views import View
+from django.utils.timezone import now
 from django.views.generic import (CreateView, FormView, UpdateView, ListView, DeleteView, DetailView, TemplateView)
-
 from .forms import (UsuarioForm,  LocalForm, ProductoForm)
-from .models import Usuario, Local, Producto
-
+from .models import Reserva, Usuario, Local, Producto
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class HomeView(TemplateView):
@@ -254,3 +257,174 @@ class ProductoDeleteView(DeleteView, LoginRequiredMixin):
         context['title'] = self.title
         context['cancel_url'] = self.success_url
         return context
+    
+
+
+
+
+from django.db.models import F
+
+
+
+@login_required
+def cart(request):
+    if request.method == 'GET' and 'producto_id' in request.GET:
+        producto_id = request.GET.get('producto_id')
+        cantidad = int(request.GET.get('cantidad', 1))
+
+        try:
+            producto = Producto.objects.get(pk=producto_id)
+            carrito = request.session.get('carrito', {})
+
+            if producto_id in carrito:
+                carrito[producto_id] += cantidad
+            else:
+                carrito[producto_id] = cantidad
+
+            request.session['carrito'] = carrito
+            request.session.modified = True
+
+            return redirect(reverse('cart'))
+
+        except Producto.DoesNotExist:
+            return HttpResponse("Error: Producto no encontrado.", status=404)
+
+    productos_en_carrito = []
+    carrito = request.session.get('carrito', {})
+    for producto_id, cantidad in carrito.items():
+        producto = Producto.objects.get(pk=producto_id)
+        producto.cantidad_en_carrito = cantidad
+        productos_en_carrito.append(producto)
+
+    total_precio = sum(producto.precio * producto.cantidad_en_carrito for producto in productos_en_carrito)
+
+    return render(request, 'cart.html', {
+        'productos_en_carrito': productos_en_carrito,
+        'total_precio': total_precio
+    })
+
+def delete_product_cart(request, producto_id):
+    if request.method == 'POST':
+        carrito = request.session.get('carrito', {})
+        if str(producto_id) in carrito:
+            producto = get_object_or_404(Producto, pk=producto_id)
+            producto.cantidad += carrito[str(producto_id)]
+            producto.save()
+            del carrito[str(producto_id)]
+            request.session['carrito'] = carrito
+    return HttpResponseRedirect(reverse('cart'))
+
+def clean_cart(request):
+    carrito = request.session.get("carrito", {})
+    for producto_id, cantidad in carrito.items():
+        producto = Producto.objects.get(pk=producto_id)
+        producto.cantidad = F('cantidad') + cantidad
+        producto.save(update_fields=['cantidad'])
+    request.session.pop("carrito", None)
+    request.session.modified = True
+    return redirect('home')
+
+def edit_cart(request, producto_id):
+    if request.method == 'POST':
+        nueva_cantidad = int(request.POST.get('cantidad', 1))
+
+        try:
+            producto = Producto.objects.get(pk=producto_id)
+            carrito = request.session.get('carrito', {})
+            cantidad_anterior = carrito.get(str(producto_id), 0)
+
+            # Calcular la diferencia entre la nueva cantidad y la anterior
+            diferencia = nueva_cantidad - cantidad_anterior
+
+            # Verificar que la nueva cantidad sea válida
+            if nueva_cantidad > 0:
+                # Si hay una diferencia positiva, es un aumento en la cantidad del carrito
+                if diferencia > 0:
+                    # Verificar si hay suficiente stock disponible para el aumento
+                    if producto.cantidad >= diferencia:
+                        carrito[str(producto_id)] = nueva_cantidad
+                        request.session['carrito'] = carrito
+                        request.session.modified = True
+                        # No actualizar el stock en la base de datos aquí
+                        return redirect(reverse('cart'))
+                    else:
+                        return HttpResponse("Error: Cantidad insuficiente para agregar al carrito.", status=400)
+                # Si hay una diferencia negativa, es una reducción en la cantidad del carrito
+                elif diferencia < 0:
+                    # No actualizar el stock en la base de datos aquí
+                    carrito[str(producto_id)] = nueva_cantidad
+                    request.session['carrito'] = carrito
+                    request.session.modified = True
+                    return redirect(reverse('cart'))
+                else:
+                    # Si no hay diferencia, no se requieren cambios
+                    return redirect(reverse('cart'))
+            else:
+                return HttpResponse("Error: Cantidad inválida para actualizar el carrito.", status=400)
+        except Producto.DoesNotExist:
+            return HttpResponse("Error: Producto no encontrado.", status=404)
+
+    return redirect('cart')
+
+
+@login_required
+def reserva(request):
+    # Obtener el carrito de la sesión
+    carrito = request.session.get('carrito', {})
+
+    if not carrito:
+        print("Error: El carrito está vacío.")
+        return redirect(reverse('carrito'))  # Redirige al carrito si está vacío
+
+    # Generar un número de orden único
+    numero_orden = Reserva.objects.count() + 1
+
+    # Obtener el primer local disponible (puedes ajustar esta lógica según tus necesidades)
+    local = Local.objects.first()
+    if not local:
+        print("Error: No hay locales disponibles.")
+        return redirect(reverse('cart'))
+
+    # Crear una nueva reserva
+    reserva = Reserva(
+        numeroOrden=numero_orden,
+        fechaInicio=now().date(),
+        cliente=request.user,
+        local=local,
+        estado=Reserva.SOLICITADO  # '1' para "Solicitado"
+    )
+
+    try:
+        reserva.clean()  
+        reserva.save()
+
+        
+        for producto_id, cantidad in carrito.items():
+            producto = Producto.objects.get(pk=producto_id)
+            reserva.productos.add(producto)
+            producto.cantidad -= cantidad
+            producto.save()
+
+        
+        request.session['carrito'] = {}
+        request.session.modified = True
+
+        print(f"Reserva creada con ID: {reserva.id} para el cliente: {request.user.username}")
+
+        return redirect(reverse('home'))  
+
+    except ValidationError as e:
+        print(f"Error al crear la reserva: {e.message_dict}")
+        return redirect(reverse('cart'))  
+    
+
+
+def my_reservations(request):
+    # Filtrar las reservas del usuario actual
+    reservas = Reserva.objects.filter(cliente=request.user)
+    return render(request, 'my_reservations.html', {'reservas': reservas})
+
+
+def reservation_detail(request, reserva_id):
+    reserva = get_object_or_404(Reserva, pk=reserva_id)
+    return render(request, 'reservation_detail.html', {'reserva': reserva})

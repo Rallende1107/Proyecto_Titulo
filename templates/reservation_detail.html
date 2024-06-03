@@ -1,0 +1,58 @@
+{% extends './index.html' %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block head %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.6/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/rg-1.5.0/sc-2.4.2/sb-1.7.1/sp-2.3.1/sl-2.0.1/datatables.min.css" rel="stylesheet">
+{% endblock head %}
+
+{% block content %}
+<body>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Detalle de la Reserva</h1>
+            <h2>Reserva: {{ reserva }}</h2>
+            <p><strong>Fecha de Inicio:</strong> {{ reserva.fechaInicio }}</p>
+            <p><strong>Fecha de Término:</strong> {{ reserva.fecha_termino }}</p>
+            <p><strong>Local:</strong> {{ reserva.local.nombre }}</p>
+            <p><strong>Usuario Reservado:</strong> {{ reserva.cliente.username }}</p>
+            <p><strong>Estado:</strong> {{ reserva.get_estado_display }}</p>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in reserva.productos.all %}
+                        <tr>
+                            <td>{{ producto.nombre }}</td>
+                            <td>${{ producto.precio }}</td>
+                            <td>${{ producto.cantidad }}</td>
+                            <td>{{ reserva.calcular_total}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
+
+{% block javascript %}
+    {% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jszip-3.10.1/dt-2.0.6/b-3.0.2/b-html5-3.0.2/b-print-3.0.2/fc-5.0.0/fh-4.0.1/r-3.0.2/rg-1.5.0/sc-2.4.2/sb-1.7.1/sp-2.3.1/sl-2.0.1/datatables.min.js"></script>
+    {% endblock script %}
+{% endblock javascript %}
