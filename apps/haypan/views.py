@@ -15,8 +15,9 @@ from django.utils.timezone import now
 from django.views.generic import (
     CreateView, FormView, UpdateView, ListView, DeleteView, DetailView, TemplateView)
 from .forms import (UsuarioForm,  LocalForm, ProductoForm)
-from .models import Usuario, Local, Producto
-
+from .models import DetalleReserva, Reserva, Usuario, Local, Producto
+from django.contrib.auth.decorators import login_required
+from .funciones import cargar_datos_desde_json
 # Create your views here.
 
 
