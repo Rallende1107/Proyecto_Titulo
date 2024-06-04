@@ -1,16 +1,19 @@
+
+
 html * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Courier New', monospace;
-  /* font-family: 'Roboto', sans-serif; */
-   /* Letra */
 }
 
 body {
   background-image: url('../img/pixlr-image-generator-caa1c658-b157-4ea7-915e-f2afb5cec9b8.webp');
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+  min-height: 100vh;
+  margin-bottom: 150px; /* Add this, adjust the value to match the height of your footer */
 }
 
 h1 { font-size: 3.5em; }
@@ -21,22 +24,54 @@ p { font-size:1em; }
 a { text-decoration: none;}
 ul, li { list-style: none; }
 
-footer{
-  background-color: #000000;
-  color: #FFFFFF;
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #000;
+  height: 100px; /* Add this, adjust the value to match the height of your footer */
+  padding: 20px; /* Add this to add some space between footer content and bottom of page */
+
 }
-.about-us{
-  display: flex; justify-content: flex-start; align-items: center; padding: 0.1px;
+.footerContainer{
+  width: auto;
+  padding: 0 auto;
+  margin: 0 0;
 }
-.about-us-pa{
-  margin-left: 20px;
+.footerNav ul{
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+.footerNav ul li a{
+  color:white;
+  margin: 20px;
+  text-decoration: none;
+  font-size: 1.3em;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+.footerNav ul li a:hover{
+  opacity: 1;
+}
+.footerBottom{
+  background-color: #000;
+  padding: 20px;
+  text-align: center;
+}
+.footerBottom p{
+  color: white;
+}
+.designer{
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 0px 5px;
 }
 
 
-/* img {
-  max-width: 100%;
-  height: auto;
-} */
+
 /* Estilo general para la navbar */
 .navbar {
   background-color: #000; /* Fondo negro para la navbar */

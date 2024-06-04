@@ -2,6 +2,8 @@ from datetime import date, datetime, timedelta
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.exceptions import ValidationError
+from django.forms import ValidationError
 from django.forms import ValidationError
 
 
@@ -58,8 +60,12 @@ class Usuario(AbstractUser):
 
     def clean(self):
         super().clean()
-        if Usuario.objects.filter(username=self.username, cliente=self.cliente, comerciante=self.comerciante).exists():
-            raise ValidationError("Este nombre de usuario ya está en uso para este tipo de usuario.")
+        # Verifica la unicidad del nombre de usuario excluyendo el usuario actual
+        if Usuario.objects.filter(username=self.username).exclude(pk=self.pk).exists():
+            raise ValidationError("Este nombre de usuario ya está en uso.")
+        # Verifica la unicidad del correo electrónico excluyendo el usuario actual
+        if Usuario.objects.filter(email=self.email).exclude(pk=self.pk).exists():
+            raise ValidationError("Este correo electrónico ya está en uso.")
 
 
 
@@ -125,21 +131,20 @@ class Producto(models.Model):
         verbose_name_plural = 'Productos'
 
 
-
 class Reserva(models.Model):
     numeroOrden = models.IntegerField(unique=True)
     fechaInicio = models.DateField()
     cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'cliente': True})
     productos = models.ManyToManyField(Producto)
     local = models.ForeignKey(Local, on_delete=models.CASCADE)
-    
+
     SOLICITADO = '1'
     EN_ESPERA = '2'
     RETIRADO = '3'
     CANCELADO_CLIENTE = '4'
     CANCELADO_COMERCIANTE = '5'
     EXPIRADO = '6'
-    
+
     TIPO_CHOICES = [
         (SOLICITADO, 'Solicitado'),
         (EN_ESPERA, 'En Espera'),
@@ -148,29 +153,29 @@ class Reserva(models.Model):
         (CANCELADO_COMERCIANTE, 'Cancelado Comerciante'),
         (EXPIRADO, 'Expirado'),
     ]
-    
+
     estado = models.CharField(
         max_length=1, choices=TIPO_CHOICES, default=SOLICITADO)
     def cancelar_por_cliente(self):
         self.estado = self.CANCELADO_CLIENTE
         self.fecha_cancelado_cliente = datetime.now()
         self.save()
-    
+
     def __str__(self):
         return f"Reserva #{self.numeroOrden}"
-    
+
     def calcular_total(self):
         total = sum(producto.precio * producto.cantidad for producto in self.productos.all())
         return total
-    
+
     def fecha_termino(self):
         return self.fechaInicio + timedelta(hours=4)
-    
+
     def clean(self):
         super().clean()
         if self.fechaInicio < date.today():
             raise ValidationError('La fecha de inicio no puede ser anterior a la fecha actual.')
-    
+
     def save(self, *args, **kwargs):
         self.clean()  # Llama a clean() para validar antes de guardar
         super().save(*args, **kwargs)

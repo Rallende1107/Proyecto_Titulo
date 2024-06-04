@@ -32,7 +32,7 @@ class HomeView(TemplateView):
         cargar_datos_desde_json()
 
         # Puedes pasar el resultado a tu template si es necesario
-        
+
 
         return context
 
@@ -282,6 +282,41 @@ class ProductoDeleteView(DeleteView, LoginRequiredMixin):
         return context
 
 
+##########################################################################################################
+########################### Usuarios
+##########################################################################################################
+# from django.views.generic import DetailView
+# from .models import EditProfileForm
+# from django.views.generic import DetailView
+
+from django.views.generic import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from .models import Usuario
+from .forms import EditProfileForm
+
+class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Usuario
+    form_class = EditProfileForm
+    template_name = 'edit_profile.html'
+    success_url = reverse_lazy('profile')  # Asume que 'profile' es el nombre de la URL para ver el perfil
+
+    def get_object(self):
+        return self.request.user
+
+
+from django.views.generic import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Usuario
+
+class UserProfileView(LoginRequiredMixin, DetailView):
+    model = Usuario
+    template_name = 'user_profile.html'
+
+    def get_object(self):
+        return self.request.user
+
+
 @login_required
 def cart(request):
     if request.method == 'GET' and 'producto_id' in request.GET:
@@ -483,21 +518,21 @@ def reservation_detail(request, reserva_id):
 def cancelar_reserva(request, reserva_id):
     reserva = get_object_or_404(Reserva, pk=reserva_id)
     print(f"Cancelando reserva #{reserva_id}")
-    
+
     if request.method == 'POST':
         reserva.estado = Reserva.CANCELADO_CLIENTE
         reserva.save()
         print(f"Reserva #{reserva_id} cancelada para el usuario {request.user.username}")
-        
+
         for detalle in reserva.detalles.all():
             producto = detalle.producto
             cantidad_reservada = detalle.cantidad
-            
+
             producto.cantidad += cantidad_reservada
             producto.save()
             print(f"Stock del producto {producto.nombre} aumentado en {cantidad_reservada}")
-            
+
         return redirect('my_reservations')
-    
+
     print("El método de solicitud no es POST. Redirigiendo a la página de inicio.")
     return redirect('home')

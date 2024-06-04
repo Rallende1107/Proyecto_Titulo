@@ -489,3 +489,117 @@ class ReservaForm(forms.ModelForm):
     class Meta:
         model = Reserva
         fields = ['numeroOrden', 'fechaInicio', 'cliente', 'productos', 'local', 'estado']
+
+
+
+from django import forms
+from .models import Usuario
+
+class EditProfileForm(forms.ModelForm):
+    username = forms.CharField(
+        label='Nombre de usuario',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese su nombre de usuario',
+                'type': 'text'
+            }
+        )
+    )
+    email = forms.EmailField(
+        label='Correo electrónico',
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese su correo electrónico',
+                'type': 'email'
+            }
+        )
+    )
+    first_name = forms.CharField(
+        label='Nombre',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese su nombre',
+                'type': 'text'
+            }
+        )
+    )
+    last_name = forms.CharField(
+        label='Apellido paterno',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese su apellido paterno',
+                'type': 'text'
+            }
+        )
+    )
+    apellido_materno = forms.CharField(
+        label='Apellido materno',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese su apellido materno',
+                'type': 'text'
+            }
+        )
+    )
+    comuna = forms.ModelChoiceField(
+        queryset=Comuna.objects.all(),
+        label='Comuna',
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off'
+            }
+        )
+    )
+    direccion = forms.CharField(
+        label='Dirección',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese su dirección',
+                'type': 'text'
+            }
+        )
+    )
+    rut = forms.CharField(
+        label='RUT',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese su RUT',
+                'type': 'text'
+            }
+        )
+    )
+    phone = forms.CharField(
+        label='Teléfono',
+        max_length=10,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'autocomplete': 'off',
+                'placeholder': 'Ingrese su número de teléfono',
+                'type': 'text'
+            }
+        )
+    )
+
+    class Meta:
+        model = Usuario
+        fields = ['username', 'email', 'first_name', 'last_name', 'apellido_materno', 'comuna', 'direccion', 'rut', 'phone']
+
+
+
