@@ -1,6 +1,6 @@
 from django.contrib import admin
 # from import_export.admin import ImportExportModelAdmin
-from .models import Region, Comuna, Usuario, Familiar, Local, Producto
+from .models import DetalleReserva, Region, Comuna, Reserva, Usuario, Familiar, Local, Producto
 
 @admin.register(Region)
 class RegionAdmin(admin.ModelAdmin):
@@ -50,3 +50,23 @@ class ProductoAdmin(admin.ModelAdmin):
     search_fields = ('nombre', 'descripcion', 'local')
     list_filter = ('local',)
     ordering = ('nombre',)
+
+@admin.register(Reserva)
+class ReservaAdmin(admin.ModelAdmin):
+    list_display = ('numeroOrden', 'fechaInicio', 'fecha_termino', 'cliente', 'local', 'estado', 'calcular_total')
+    list_filter = ('estado', 'fechaInicio', 'local')
+    search_fields = ('numeroOrden', 'cliente__nombre', 'local__nombre')
+    date_hierarchy = 'fechaInicio'
+    ordering = ('-fechaInicio',)
+
+    def fecha_termino(self, obj):
+        return obj.fecha_termino()
+    fecha_termino.short_description = 'Fecha de Término'
+
+
+
+@admin.register(DetalleReserva)
+class DetalleReservaAdmin(admin.ModelAdmin):
+    list_display = ('reserva', 'producto', 'cantidad', 'precio_unitario', 'total')
+    list_filter = ('reserva', 'producto')
+    search_fields = ['reserva__numeroOrden', 'producto__nombre']

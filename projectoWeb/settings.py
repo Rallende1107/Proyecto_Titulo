@@ -78,11 +78,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.haypan.context_processor.total_carrito',
             ],
         },
     },
 ]
-
 WSGI_APPLICATION = 'projectoWeb.wsgi.application'
 
 
@@ -154,5 +154,5 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8100",
 ]
-
+LOGIN_URL = '/login/'
 # LOGOUT_REDIRECT_URL = '//'
