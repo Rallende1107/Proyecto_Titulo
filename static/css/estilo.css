@@ -109,6 +109,9 @@ footer {
   color: #fff; /* Texto blanco para los elementos del dropdown */
 }
 
+.nav-item i{
+  font-size: 1em;
+}
 .navbar .dropdown-item:hover {
   background-color: #333; /* Fondo gris oscuro para los elementos del dropdown al pasar el cursor */
   color: #ccc; /* Texto gris claro para los elementos del dropdown al pasar el cursor */
@@ -272,4 +275,11 @@ button[type="submit"] {
 .fa-solid{
   margin-top: 15;
   font-size: 2em;
+}
+
+.myform{
+  background-color: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente */
+  border-radius: 10px; /* Bordes redondeados */
+  backdrop-filter: blur(10px); /* Desenfoque */
+  color: #e6efe6;
 }
