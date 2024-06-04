@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from apps.haypan.models import Comuna, Usuario,Producto,Local,Familiar
+from apps.haypan.models import Comuna, DetalleReserva, Reserva, Usuario,Producto,Local,Familiar
 class UserTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
@@ -73,3 +73,17 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = ['username', 'email', 'first_name', 'last_name', 'apellido_materno', 'direccion', 'comuna', 'rut', 'phone', 'cliente', 'comerciante']
+
+
+class ReservaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reserva
+        fields = '__all__'
+
+
+
+class DetalleReservaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetalleReserva
+        fields = '__all__'
+
