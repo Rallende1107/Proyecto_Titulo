@@ -154,5 +154,5 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8100",
 ]
-
+LOGIN_URL = '/login/'
 # LOGOUT_REDIRECT_URL = '//'

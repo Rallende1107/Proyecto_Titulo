@@ -1,8 +1,9 @@
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.forms import ValidationError
+
 
 
 # Create your models here.
@@ -123,6 +124,8 @@ class Producto(models.Model):
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
 
+
+
 class Reserva(models.Model):
     numeroOrden = models.IntegerField(unique=True)
     fechaInicio = models.DateField()
@@ -148,6 +151,10 @@ class Reserva(models.Model):
     
     estado = models.CharField(
         max_length=1, choices=TIPO_CHOICES, default=SOLICITADO)
+    def cancelar_por_cliente(self):
+        self.estado = self.CANCELADO_CLIENTE
+        self.fecha_cancelado_cliente = datetime.now()
+        self.save()
     
     def __str__(self):
         return f"Reserva #{self.numeroOrden}"
@@ -157,7 +164,7 @@ class Reserva(models.Model):
         return total
     
     def fecha_termino(self):
-        return self.fechaInicio + timedelta(days=1)
+        return self.fechaInicio + timedelta(hours=4)
     
     def clean(self):
         super().clean()
@@ -167,9 +174,21 @@ class Reserva(models.Model):
     def save(self, *args, **kwargs):
         self.clean()  # Llama a clean() para validar antes de guardar
         super().save(*args, **kwargs)
-    
+
+
+
+class DetalleReserva(models.Model):
+    reserva = models.ForeignKey(Reserva, on_delete=models.CASCADE, related_name='detalles')
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField()
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f"Detalle de reserva #{self.reserva.numeroOrden} - Producto: {self.producto.nombre}"
+
     class Meta:
-        db_table = 'Reserva'
+        db_table = 'DetalleReserva'
         managed = True
-        verbose_name = 'Reserva'
-        verbose_name_plural = 'Reservas'
+        verbose_name = 'Detalle de Reserva'
+        verbose_name_plural = 'Detalles de Reserva'

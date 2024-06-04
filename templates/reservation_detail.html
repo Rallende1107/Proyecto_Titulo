@@ -14,12 +14,12 @@
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">Detalle de la Reserva</h1>
-            <h2>Reserva: {{ reserva }}</h2>
-            <p><strong>Fecha de Inicio:</strong> {{ reserva.fechaInicio }}</p>
-            <p><strong>Fecha de Término:</strong> {{ reserva.fecha_termino }}</p>
-            <p><strong>Local:</strong> {{ reserva.local.nombre }}</p>
-            <p><strong>Usuario Reservado:</strong> {{ reserva.cliente.username }}</p>
-            <p><strong>Estado:</strong> {{ reserva.get_estado_display }}</p>
+            <h2 style="color: red;">Reserva: {{ reserva }}</h2>
+            <p style="color: red;"><strong>Fecha de Inicio:</strong> {{ reserva.fechaInicio }}</p>
+            <p style="color: red;"><strong>Fecha de Término:</strong> {{ reserva.fecha_termino }}</p>
+            <p style="color: red;"><strong>Local:</strong> {{ reserva.local.nombre }}</p>
+            <p style="color: red;"><strong>Usuario Reservado:</strong> {{ reserva.cliente.username }}</p>
+            <p style="color: red;"><strong>Estado:</strong> {{ reserva.get_estado_display }}</p>
             
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -28,21 +28,32 @@
                             <th>Producto</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
-                            <th>total</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for producto in reserva.productos.all %}
+                        {% for detalle_reserva in detalles_reserva %}
                         <tr>
-                            <td>{{ producto.nombre }}</td>
-                            <td>${{ producto.precio }}</td>
-                            <td>${{ producto.cantidad }}</td>
-                            <td>{{ reserva.calcular_total}}</td>
+                            <td>{{ detalle_reserva.producto.nombre  }}</td>
+                            <td>${{ detalle_reserva.precio_unitario }}</td>
+                            <td>{{ detalle_reserva.cantidad}}</td>  
+                            <td>${{ detalle_reserva.total }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
+
+            {% if reserva.estado != reserva.RETIRADO and reserva.estado != reserva.EXPIRADO and reserva.estado != reserva.CANCELADO_CLIENTE %}
+                {% if not reserva.fecha_termino_expirado %}
+                    <form action="{% url 'cancelar_reserva' reserva.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
+                    </form>
+                {% endif %}
+            {% elif reserva.estado == reserva.CANCELADO_CLIENTE %}
+                <a href="{% url 'my_reservations' %}" class="btn btn-primary">Volver</a>
+            {% endif %}
         </div>
     </div>
 </body>

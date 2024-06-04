@@ -36,7 +36,7 @@
                                 <td>{{ reserva.fecha_termino }}</td>
                                 <td>{{ reserva.local.nombre }}</td>
                                 <td>{{ reserva.cliente.username }}</td>
-                                <td>{{ reserva.estado }}</td>
+                                <td>{{ reserva.get_estado_display }}</td>
                                 <td><a href="{% url 'reservation_detail' reserva.id %}">Ver</a>
                                 </td>
                             </tr>

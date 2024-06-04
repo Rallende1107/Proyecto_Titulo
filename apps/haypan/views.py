@@ -1,3 +1,5 @@
+import uuid
+from django.db.models import F
 from datetime import timezone
 from django.conf import settings
 from django.forms import ValidationError
@@ -10,11 +12,13 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.utils.timezone import now
-from django.views.generic import (CreateView, FormView, UpdateView, ListView, DeleteView, DetailView, TemplateView)
+from django.views.generic import (
+    CreateView, FormView, UpdateView, ListView, DeleteView, DetailView, TemplateView)
 from .forms import (UsuarioForm,  LocalForm, ProductoForm)
-from .models import Reserva, Usuario, Local, Producto
+from .models import DetalleReserva, Reserva, Usuario, Local, Producto
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
 
 class HomeView(TemplateView):
     template_name = "index.html"
@@ -23,24 +27,25 @@ class HomeView(TemplateView):
 class ComercianteRegisterView(CreateView):
     template_name = 'user_register.html'
     form_class = UsuarioForm
-    success_url = reverse_lazy ("home")
+    success_url = reverse_lazy("home")
     title = 'Registro comerciante'
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.title
         context['cancel_url'] = self.success_url
         return context
+
     def form_valid(self, form):
         form.instance.cliente = True
         form.instance.comerciante = False
         return super().form_valid(form)
 
+
 class ClienteRegisterView(CreateView):
     template_name = 'user_register.html'
     form_class = UsuarioForm
-    success_url = reverse_lazy ("home")
+    success_url = reverse_lazy("home")
     title = 'Registro Cliente'
 
     def get_context_data(self, **kwargs):
@@ -54,11 +59,12 @@ class ClienteRegisterView(CreateView):
         form.instance.comerciante = False
         return super().form_valid(form)
 
+
 class LoginView(FormView):
     template_name = 'login.html'
     form_class = AuthenticationForm
     title = "Login"
-    success_url = reverse_lazy ("home")
+    success_url = reverse_lazy("home")
 
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -77,21 +83,23 @@ class LoginView(FormView):
         context['cancel_url'] = self.success_url
         return context
 
+
 def salir(request):
     logout(request)
     return redirect('home')
 
 ##########################################################################################################
-########################### Locales
+# Locales
 ##########################################################################################################
+
 
 class LocalCreateView(LoginRequiredMixin, CreateView):
     model = Local
     template_name = "p_add.html"
     form_class = LocalForm
-    success_url = reverse_lazy ("local_list")
-    cancel_url = reverse_lazy ("local_list")
-    title= 'Crear Nuevo Local'
+    success_url = reverse_lazy("local_list")
+    cancel_url = reverse_lazy("local_list")
+    title = 'Crear Nuevo Local'
 
     def get_login_url(self):
         return reverse_lazy("login")
@@ -110,10 +118,11 @@ class LocalCreateView(LoginRequiredMixin, CreateView):
         context['success_url'] = self.success_url
         return context
 
+
 class LocalUpdateView(LoginRequiredMixin, UpdateView):
     model = Local
     form_class = LocalForm
-    success_url = reverse_lazy ("local_list")
+    success_url = reverse_lazy("local_list")
     template_name = "p_add.html"
     title = 'Modificar Local'
 
@@ -123,9 +132,10 @@ class LocalUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.title
-        context['cancel_url'] =  self.success_url
+        context['cancel_url'] = self.success_url
 
         return context
+
 
 class LocalListView(ListView, LoginRequiredMixin):
     """ Lista de Todos los Locales"""
@@ -155,6 +165,7 @@ class LocalListView(ListView, LoginRequiredMixin):
 
         return context
 
+
 class LocalLDeleteView(DeleteView, LoginRequiredMixin):
     model = Local
     template_name = "delete.html"
@@ -175,7 +186,7 @@ class LocalLDeleteView(DeleteView, LoginRequiredMixin):
 
 
 ##########################################################################################################
-########################### Locales
+# Locales
 ##########################################################################################################
 
 
@@ -199,12 +210,13 @@ class ProductoListView(ListView):
         context['success_url'] = reverse_lazy('local_list')
         return context
 
+
 class ProductoCreateView(LoginRequiredMixin, CreateView):
     model = Producto
     template_name = "p_add.html"
     form_class = ProductoForm
-    success_url = reverse_lazy ("producto_list")
-    title= 'Crear Nuevo Producto'
+    success_url = reverse_lazy("producto_list")
+    title = 'Crear Nuevo Producto'
 
     def get_login_url(self):
         return reverse_lazy("login")
@@ -212,7 +224,6 @@ class ProductoCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
 
         return super().form_valid(form)
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -225,7 +236,7 @@ class ProductoCreateView(LoginRequiredMixin, CreateView):
 class ProductoUpdateView(LoginRequiredMixin, UpdateView):
     model = Producto
     form_class = ProductoForm
-    success_url = reverse_lazy ("producto_list")
+    success_url = reverse_lazy("producto_list")
     template_name = "p_add.html"
     title = 'Actualzar Producto'
 
@@ -235,7 +246,7 @@ class ProductoUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.title
-        context['cancel_url'] =  self.success_url
+        context['cancel_url'] = self.success_url
 
         return context
 
@@ -257,13 +268,6 @@ class ProductoDeleteView(DeleteView, LoginRequiredMixin):
         context['title'] = self.title
         context['cancel_url'] = self.success_url
         return context
-    
-
-
-
-
-from django.db.models import F
-
 
 
 @login_required
@@ -296,12 +300,14 @@ def cart(request):
         producto.cantidad_en_carrito = cantidad
         productos_en_carrito.append(producto)
 
-    total_precio = sum(producto.precio * producto.cantidad_en_carrito for producto in productos_en_carrito)
+    total_precio = sum(
+        producto.precio * producto.cantidad_en_carrito for producto in productos_en_carrito)
 
     return render(request, 'cart.html', {
         'productos_en_carrito': productos_en_carrito,
         'total_precio': total_precio
     })
+
 
 def delete_product_cart(request, producto_id):
     if request.method == 'POST':
@@ -314,6 +320,7 @@ def delete_product_cart(request, producto_id):
             request.session['carrito'] = carrito
     return HttpResponseRedirect(reverse('cart'))
 
+
 def clean_cart(request):
     carrito = request.session.get("carrito", {})
     for producto_id, cantidad in carrito.items():
@@ -323,6 +330,7 @@ def clean_cart(request):
     request.session.pop("carrito", None)
     request.session.modified = True
     return redirect('home')
+
 
 def edit_cart(request, producto_id):
     if request.method == 'POST':
@@ -372,15 +380,20 @@ def reserva(request):
     # Obtener el carrito de la sesión
     carrito = request.session.get('carrito', {})
 
+    print("Carrito:", carrito)
+
     if not carrito:
         print("Error: El carrito está vacío.")
-        return redirect(reverse('carrito'))  # Redirige al carrito si está vacío
+        return redirect(reverse('cart'))  # Redirige al carrito si está vacío
 
     # Generar un número de orden único
     numero_orden = Reserva.objects.count() + 1
+    print("Número de orden generado:", numero_orden)
 
     # Obtener el primer local disponible (puedes ajustar esta lógica según tus necesidades)
     local = Local.objects.first()
+    print("Local obtenido:", local)
+
     if not local:
         print("Error: No hay locales disponibles.")
         return redirect(reverse('cart'))
@@ -394,37 +407,85 @@ def reserva(request):
         estado=Reserva.SOLICITADO  # '1' para "Solicitado"
     )
 
+    print("Reserva creada:", reserva)
+
     try:
-        reserva.clean()  
+        reserva.clean()
         reserva.save()
 
-        
+        print("Reserva guardada en la base de datos.")
+
         for producto_id, cantidad in carrito.items():
             producto = Producto.objects.get(pk=producto_id)
-            reserva.productos.add(producto)
+            reserva.productos.add(producto)  # Agregar producto a la reserva
+
+            print(f"Producto: {producto.nombre}, Cantidad a reservar: {cantidad}")
+
+            # Calcular el precio unitario y total
+            precio_unitario = producto.precio
+            total = precio_unitario * cantidad
+
+            # Crear y guardar el detalle de reserva
+            detalle_reserva = DetalleReserva(
+                reserva=reserva,
+                producto=producto,
+                cantidad=cantidad,
+                precio_unitario=precio_unitario,
+                total=total  # Asegúrate de proporcionar el total aquí
+            )
+            detalle_reserva.save()
+
+            # Descuentos de stock
             producto.cantidad -= cantidad
             producto.save()
 
-        
         request.session['carrito'] = {}
         request.session.modified = True
 
-        print(f"Reserva creada con ID: {reserva.id} para el cliente: {request.user.username}")
+        print(
+            f"Reserva creada con ID: {reserva.id} para el cliente: {request.user.username}")
 
-        return redirect(reverse('home'))  
+        return redirect(reverse('home'))
 
     except ValidationError as e:
         print(f"Error al crear la reserva: {e.message_dict}")
-        return redirect(reverse('cart'))  
-    
+        return redirect(reverse('cart'))
 
 
+
+@login_required
 def my_reservations(request):
     # Filtrar las reservas del usuario actual
     reservas = Reserva.objects.filter(cliente=request.user)
     return render(request, 'my_reservations.html', {'reservas': reservas})
 
 
+
 def reservation_detail(request, reserva_id):
     reserva = get_object_or_404(Reserva, pk=reserva_id)
-    return render(request, 'reservation_detail.html', {'reserva': reserva})
+    detalles_reserva = reserva.detalles.all()
+    return render(request, 'reservation_detail.html', {'reserva': reserva, 'detalles_reserva': detalles_reserva})
+
+
+@login_required
+def cancelar_reserva(request, reserva_id):
+    reserva = get_object_or_404(Reserva, pk=reserva_id)
+    print(f"Cancelando reserva #{reserva_id}")
+    
+    if request.method == 'POST':
+        reserva.estado = Reserva.CANCELADO_CLIENTE
+        reserva.save()
+        print(f"Reserva #{reserva_id} cancelada para el usuario {request.user.username}")
+        
+        for detalle in reserva.detalles.all():
+            producto = detalle.producto
+            cantidad_reservada = detalle.cantidad
+            
+            producto.cantidad += cantidad_reservada
+            producto.save()
+            print(f"Stock del producto {producto.nombre} aumentado en {cantidad_reservada}")
+            
+        return redirect('my_reservations')
+    
+    print("El método de solicitud no es POST. Redirigiendo a la página de inicio.")
+    return redirect('home')

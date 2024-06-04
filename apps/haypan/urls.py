@@ -93,5 +93,6 @@ urlpatterns = [
     path('reserva/', views.reserva, name='reserva'),
     path('my_reservations/', views.my_reservations, name='my_reservations'),
     path('my_reservations/<int:reserva_id>/', views.reservation_detail, name='reservation_detail'),
+    path('cancelar_reserva/<int:reserva_id>/', views.cancelar_reserva, name='cancelar_reserva'),
 ]
 
