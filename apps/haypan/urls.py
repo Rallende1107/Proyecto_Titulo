@@ -96,5 +96,10 @@ urlpatterns = [
 
     path('profile/', views.UserProfileView.as_view(), name='profile'),
     path('profile/edit/', views.UserProfileUpdateView.as_view(), name='edit_profile'),
+
+    path('user_panel/', views.userPanel, name='user_panel'),
+    path('booking/<int:usuario_id>/', views.booking, name='booking'),
+    path('merchant_reserve/<int:reserva_id>/', views.merchant_reserve, name='merchant_reserve'),
+    path('actualizar_estado/<int:reserva_id>/', views.actualizar_estado, name='actualizar_estado'),
 ]
 

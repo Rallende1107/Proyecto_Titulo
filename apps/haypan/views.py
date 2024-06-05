@@ -536,3 +536,56 @@ def cancelar_reserva(request, reserva_id):
 
     print("El método de solicitud no es POST. Redirigiendo a la página de inicio.")
     return redirect('home')
+
+
+
+def userPanel(request):
+    users = Usuario.objects.filter(comerciante=False)
+    return render(request, 'user_panel.html', {'users': users})
+
+
+def booking(request, usuario_id):
+    # Obtener todas las reservas del cliente especificado
+    reservas_cliente = Reserva.objects.filter(cliente_id=usuario_id).order_by('-fechaInicio')
+    
+    # Filtrar las reservas por estado
+    estado_reservas = request.GET.get('estado', None)  # Obtener el estado de la reserva de la consulta GET
+    
+    if estado_reservas:  # Si se proporciona un estado, filtrar las reservas por ese estado
+        reservas_cliente = reservas_cliente.filter(estado=estado_reservas)
+    
+    return render(request, 'booking.html', {'reservas': reservas_cliente})
+
+
+def merchant_reserve(request, reserva_id):
+    reserva = get_object_or_404(Reserva, id=reserva_id)
+    return render(request, 'merchant_reserve.html', {'reserva': reserva})
+
+
+
+@login_required
+def actualizar_estado(request, reserva_id):
+    reserva = get_object_or_404(Reserva, pk=reserva_id)
+
+    if request.method == 'POST':
+        nuevo_estado = request.POST.get('nuevo_estado')
+        if nuevo_estado in [Reserva.SOLICITADO, Reserva.EN_ESPERA, Reserva.RETIRADO, Reserva.CANCELADO_COMERCIANTE, Reserva.EXPIRADO]:
+            reserva.estado = nuevo_estado
+            reserva.save()
+            print(f"Estado de la reserva #{reserva_id} cambiado a {nuevo_estado}")
+
+            # Devolución de stock si se cancela la reserva por el comerciante o expira
+            if nuevo_estado in [Reserva.CANCELADO_COMERCIANTE, Reserva.EXPIRADO]:
+                for detalle in reserva.detalles.all():
+                    producto = detalle.producto
+                    cantidad_reservada = detalle.cantidad
+                    producto.cantidad += cantidad_reservada
+                    producto.save()
+                    print(f"Stock devuelto para el producto {producto.nombre}")
+
+            return redirect('merchant_reserve', reserva_id=reserva_id)
+        else:
+            # Manejar el caso en que se envíe un estado no válido
+            print("Estado no válido")
+
+    return render(request, 'booking.html', {'reserva': reserva})

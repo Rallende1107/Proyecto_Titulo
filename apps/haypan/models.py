@@ -130,10 +130,11 @@ class Producto(models.Model):
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
 
-
+from django.utils import timezone
 class Reserva(models.Model):
     numeroOrden = models.IntegerField(unique=True)
     fechaInicio = models.DateField()
+    horaInicio = models.TimeField(default=timezone.now) 
     cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'cliente': True})
     productos = models.ManyToManyField(Producto)
     local = models.ForeignKey(Local, on_delete=models.CASCADE)
@@ -156,10 +157,34 @@ class Reserva(models.Model):
 
     estado = models.CharField(
         max_length=1, choices=TIPO_CHOICES, default=SOLICITADO)
+    
     def cancelar_por_cliente(self):
         self.estado = self.CANCELADO_CLIENTE
         self.fecha_cancelado_cliente = datetime.now()
         self.save()
+
+    def cancelar_por_comerciante(self):
+        self.estado = self.CANCELADO_COMERCIANTE
+        self.fecha_cancelado_comerciante = datetime.now()
+        self.save()
+
+    def marcar_como_retirado(self):
+        self.estado = self.RETIRADO
+        self.save()
+
+    def marcar_como_en_espera(self):
+        self.estado = self.EN_ESPERA
+        self.save()
+
+    def marcar_como_expirado(self):
+        self.estado = self.EXPIRADO
+        self.save()
+
+    def fecha_termino(self):
+        if self.estado == self.EXPIRADO:
+            return datetime.now()  # Si está expirado, devuelve la fecha y hora actual
+        else:
+            return self.fechaInicio + timedelta(hours=4)  # De lo contrario, devuelve la fecha de inicio más 4 horas
 
     def __str__(self):
         return f"Reserva #{self.numeroOrden}"
@@ -167,9 +192,6 @@ class Reserva(models.Model):
     def calcular_total(self):
         total = sum(producto.precio * producto.cantidad for producto in self.productos.all())
         return total
-
-    def fecha_termino(self):
-        return self.fechaInicio + timedelta(hours=4)
 
     def clean(self):
         super().clean()
@@ -179,7 +201,6 @@ class Reserva(models.Model):
     def save(self, *args, **kwargs):
         self.clean()  # Llama a clean() para validar antes de guardar
         super().save(*args, **kwargs)
-
 
 
 class DetalleReserva(models.Model):

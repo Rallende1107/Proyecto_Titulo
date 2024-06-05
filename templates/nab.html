@@ -9,7 +9,7 @@
                 <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Perfil</a>
+                <a class="nav-link" href="{% url 'profile' %}">Perfil</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownComerciante" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,6 +23,8 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{% url 'local_add' %}">Nuevo Local</a>
                     <a class="dropdown-item" href="{% url 'local_list' %}">Mis Locales</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'user_panel' %}">Lista Cliente</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
