@@ -2,21 +2,33 @@ version: '5'
 
 services:
   db:
-    image: postgres
+    image: postgres:13.11-alpine3.18
     environment:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      LANG: en_US.UTF-8
+      LANGUAGE: en_US:en
+    ports:
+      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - ./script:/docker-entrypoint-initdb.d/
 
   web:
     build: .
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/mydatabase
+      DATABASE_URL: postgres://postgres:postgres@db:5432/mydatabase
+      SECRET_KEY: django-insecure-mwu%r3iu+7-@q3^9a$gp3q&fjfnpw(wagzwvo==zlwgu2hqm%_
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
     depends_on:
       - db
     command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
     volumes:
       - .:/app
 
