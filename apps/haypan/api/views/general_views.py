@@ -2,11 +2,107 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import status
 from rest_framework import viewsets
-from apps.haypan.models import Comuna, Producto,Local,Familiar,Usuario
-from apps.haypan.api.serializers.serializers import ComunaSerializer, ProductoSerializer,FamiliaSerializer,LocalSerializer,UserSerializer
+from apps.haypan.models import Comuna, DetalleReserva, Producto,Local,Familiar, Reserva,Usuario
+from apps.haypan.api.serializers.serializers import ComunaSerializer, DetalleReservaSerializer, ProductoSerializer,FamiliaSerializer,LocalSerializer, ReservaSerializer,UserSerializer
 from apps.haypan.api.authentication_mixins import Authenticacion
 
 
+class DetalleReservaListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = DetalleReservaSerializer
+    queryset = DetalleReservaSerializer.Meta.model.objects.all()
+    
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Detalle Reserva creado correctamente'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+
+class  DetalleReservaRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    serializer_class = DetalleReservaSerializer
+
+    def get_queryset(self):
+        return self.serializer_class.Meta.model.objects.all()
+
+    def delete(self, request, pk=None):
+        detalleReserva = self.get_queryset().filter(id=pk).first()
+        if detalleReserva:
+            detalleReserva.state = False
+            detalleReserva.save()
+            return Response({'message': 'detalle Reserva eliminado correctamente'}, status=status.HTTP_200_OK)
+        return Response({'error': 'No existe un detalle Reserva  con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk=None):
+        try:
+            detalleReserva = self.get_queryset().get(pk=pk)
+        except DetalleReserva.DoesNotExist:
+            return Response({'error': 'No existe un detalle Reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = self.get_serializer(detalleReserva, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk=None):
+        try:
+            detalleReserva = self.get_queryset().get(pk=pk)
+        except detalleReserva.DoesNotExist:
+            return Response({'error': 'No existe un reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = self.get_serializer(detalleReserva, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class DetalleReservaViews(viewsets.ModelViewSet):
+    serializer_class = DetalleReservaSerializer
+    queryset = DetalleReservaSerializer.Meta.model.objects.all()
+
+
+class ReservaRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    serializer_class = ReservaSerializer
+
+    def get_queryset(self):
+        return self.serializer_class.Meta.model.objects.all()
+
+    def delete(self, request, pk=None):
+        reserva = self.get_queryset().filter(id=pk).first()
+        if reserva:
+            reserva.state = False
+            reserva.save()
+            return Response({'message': 'reserva eliminado correctamente'}, status=status.HTTP_200_OK)
+        return Response({'error': 'No existe un reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk=None):
+        try:
+            reserva = self.get_queryset().get(pk=pk)
+        except Reserva.DoesNotExist:
+            return Response({'error': 'No existe un reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = self.get_serializer(reserva, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk=None):
+        try:
+            reserva = self.get_queryset().get(pk=pk)
+        except reserva.DoesNotExist:
+            return Response({'error': 'No existe un reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = self.get_serializer(reserva, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ReservaViews(viewsets.ModelViewSet):
+    serializer_class = ReservaSerializer
+    queryset = ReservaSerializer.Meta.model.objects.all()
 
 
 

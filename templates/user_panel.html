@@ -1,0 +1,43 @@
+{% extends "./index.html" %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    Lista de Usuarios Registrados
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>Email</th>
+            <th>Dirección</th>
+            <th>Comuna</th>
+            <th>Detalle</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ user }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.apellido_materno }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.direccion }}</td>
+            <td>{{ user.comuna }}</td>
+            <td><a href="{% url 'booking' user.id %}">VER</a></td> 
+            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

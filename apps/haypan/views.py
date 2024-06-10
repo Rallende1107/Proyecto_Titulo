@@ -536,14 +536,3 @@ def cancelar_reserva(request, reserva_id):
 
     print("El método de solicitud no es POST. Redirigiendo a la página de inicio.")
     return redirect('home')
-
-# from django.urls import reverse_lazy
-# from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView
-
-# class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
-#     template_name = 'password_change.html'
-#     success_url = reverse_lazy('password_change_done')
-
-# class CustomPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
-#     template_name = 'password_change_done.html'

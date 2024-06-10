@@ -14,7 +14,8 @@ from apps.haypan.api.views.general_views import (
     LocalRetrieveDestroyAPIView,
     FamiliaListCreateAPIView,
     FamiliaRetrieveDestroyAPIView,
-
+    ReservaRetrieveDestroyAPIView,
+    ReservaListCreateAPIView,
 )
 
 urlpatterns = [
@@ -31,7 +32,9 @@ urlpatterns = [
     path('usuario/<int:pk>/', UserRetrieveDestroyAPIView.as_view(), name='usuario-retrieve-destroy-Update'),
     path('local/<int:pk>/', LocalRetrieveDestroyAPIView.as_view(), name='local-retrieve-destroy-Update'),
     path('familia/<int:pk>/', FamiliaRetrieveDestroyAPIView.as_view(), name='familia-retrieve-destroy-Update'),
+    path('reserva/<int:pk>/', ReservaRetrieveDestroyAPIView.as_view(), name='reserva-retrieve-destroy-Update'),
     path('familia/', FamiliaListCreateAPIView.as_view(), name='familia-list-create'),
     path('local/', LocalListCreateAPIView.as_view(), name='local-list-create'),
+    path('reserva/', ReservaListCreateAPIView.as_view(), name='reserva-list-create'),
     
 ]

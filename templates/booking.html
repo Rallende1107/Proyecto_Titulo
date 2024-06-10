@@ -1,0 +1,31 @@
+{% extends './index.html' %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">Reservas del Usuario</div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Número de Orden</th>
+              <th>Fecha de Inicio</th>
+              <th>Estado</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for reserva in reservas %}
+              <tr>
+                <td>{{ reserva.numeroOrden }}</td>
+                <td>{{ reserva.fechaInicio }}</td>
+                <td>{{ reserva.get_estado_display }}</td> 
+                <td><a href="{% url 'merchant_reserve' reserva.id %}">VER</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

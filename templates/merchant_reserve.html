@@ -1,0 +1,62 @@
+{% extends './index.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Detalle de la Reserva</h2>
+            <h2 style="color: red;">Reserva: {{ reserva }}</h2>
+            <p style="color: red;"><strong>Fecha de Inicio:</strong> {{ reserva.fechaInicio }}</p>
+            <p style="color: red;"><strong>Fecha de Término:</strong> {{ reserva.fecha_termino }}</p>
+            <p style="color: red;"><strong>Local:</strong> {{ reserva.local.nombre }}</p>
+            <p style="color: red;"><strong>Usuario Reservado:</strong> {{ reserva.cliente.username }}</p>
+            <p style="color: red;"><strong>Estado:</strong> {{ reserva.get_estado_display }}</p>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for detalle_reserva in reserva.detalles.all %}
+                        <tr>
+                            <td>{{ detalle_reserva.producto.nombre }}</td>
+                            <td>${{ detalle_reserva.precio_unitario }}</td>
+                            <td>{{ detalle_reserva.cantidad }}</td>  
+                            <td>${{ detalle_reserva.total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <form method="post">
+            {% csrf_token %}
+            {% if reserva.estado != reserva.CANCELADO_COMERCIANTE and reserva.estado != reserva.RETIRADO and reserva.estado != reserva.EXPIRADO and reserva.estado != reserva.CANCELADO_CLIENTE %}
+            <h4>Actualizar Estado de la Reserva</h4>
+            <div class="form-group">
+                    <label for="nuevo_estado">Estado de la Reserva:</label>
+                    <select class="form-control" id="nuevo_estado" name="nuevo_estado">
+                        <option value="{{ reserva.SOLICITADO }}">Solicitado</option>
+                        <option value="{{ reserva.EN_ESPERA }}">En Espera</option>
+                        <option value="{{ reserva.RETIRADO }}">Retirado</option>
+                        <option value="{{ reserva.CANCELADO_COMERCIANTE }}">Cancelado por el Comerciante</option>
+                        <option value="{{ reserva.EXPIRADO }}">Expirado</option>
+                    </select>
+                </div>
+                <button formaction="{% url 'actualizar_estado' reserva.id %}" type="submit" class="btn btn-primary">Actualizar Estado</button>
+            {% else %}
+                <a href="{% url 'booking' reserva.cliente.id %}" class="btn btn-primary">Volver</a>
+            {% endif %}
+        </form>
+    </div>
+    
+    
+</body>
+{% endblock %}
