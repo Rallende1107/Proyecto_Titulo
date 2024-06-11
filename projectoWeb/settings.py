@@ -32,7 +32,6 @@ DEBUG = os.getenv("DEBUG") == "True"
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0']
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #Apps
+    # Apps
     'apps.haypan',
     # ...
     'rest_framework',
@@ -89,23 +88,23 @@ WSGI_APPLICATION = 'projectoWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'mydatabase'),
-        'USER': os.getenv('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
-        'HOST': 'db',  # El nombre del servicio de la base de datos en el docker-compose.yml
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': os.getenv('POSTGRES_DB', 'mydatabase'),
+#        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+#        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
+#        'HOST': 'db',  # El nombre del servicio de la base de datos en el docker-compose.yml
+#        'PORT': '5432',
+#    }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
