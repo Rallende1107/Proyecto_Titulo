@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 
 
 ]
-TOKEN_EXPIRED_AFTER_SECONDS = 900
+TOKEN_EXPIRED_AFTER_SECONDS = 86400
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
@@ -166,3 +166,4 @@ CORS_ORIGIN_WHITELIST = [
 ]
 LOGIN_URL = '/login/'
 # LOGOUT_REDIRECT_URL = '//'
+APPEND_SLASH = False

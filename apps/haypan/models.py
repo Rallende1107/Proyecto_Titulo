@@ -49,7 +49,7 @@ class Usuario(AbstractUser):
     rut = models.CharField(max_length=15)
     cliente = models.BooleanField(default=False)
     comerciante = models.BooleanField(default=False)
-    phone = models.CharField(max_length=15)
+    phone = models.CharField(max_length=10, null=True, blank=True)
 
     class Meta:
         db_table = 'Usuario'

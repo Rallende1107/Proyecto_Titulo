@@ -1,25 +1,11 @@
 from rest_framework import serializers
 from apps.haypan.models import Comuna, DetalleReserva, Reserva, Usuario,Producto,Local,Familiar
+from django.contrib.auth.hashers import make_password
 class UserTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ('username', 'email', 'first_name', 'last_name')
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = '__all__'
+        fields = ('id','username', 'email', 'first_name', 'last_name', 'apellido_materno', 'direccion', 'comuna', 'rut', 'phone', 'cliente', 'comerciante')
 
-    def create(self, validated_data):
-        usuario = Usuario(**validated_data)
-        usuario.set_password(validated_data['password'])
-        usuario.save()
-        return usuario
-    
-    def update(self, instance, validated_data):
-        update_user =super().update(instance, validated_data)
-        update_user.set_password(validated_data['password'])
-        update_user.save()
-        return update_user
 
 class UserListSerializer(serializers.ModelSerializer):
     class meta:
@@ -69,10 +55,32 @@ class ComunaSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     comuna = serializers.SlugRelatedField(
         slug_field='nombre', queryset=Comuna.objects.all())
+    
+    password = serializers.CharField(write_only=True) 
 
     class Meta:
         model = Usuario
-        fields = ['username', 'email', 'first_name', 'last_name', 'apellido_materno', 'direccion', 'comuna', 'rut', 'phone', 'cliente', 'comerciante']
+        fields = ['id', 'username', 'password', 'email', 'first_name', 'last_name', 'apellido_materno', 'direccion', 'comuna', 'rut', 'phone', 'cliente', 'comerciante']
+
+    def create(self, validated_data):
+        # Extraer y eliminar el campo de contraseña para cifrarlo
+        password = validated_data.pop('password')
+        
+        # Cifrar la contraseña antes de crear el usuario
+        hashed_password = make_password(password)
+        
+        # Crear y devolver el usuario con la contraseña cifrada
+        usuario = Usuario.objects.create(password=hashed_password, **validated_data)
+        return usuario
+
+    def update(self, instance, validated_data):
+        # Extraer y eliminar el campo de contraseña para cifrarlo si está presente en los datos validados
+        if 'password' in validated_data:
+            password = validated_data.pop('password')
+            hashed_password = make_password(password)
+            validated_data['password'] = hashed_password
+        
+        return super().update(instance, validated_data)
 
 class ReservaSerializer(serializers.ModelSerializer):
     class Meta:
