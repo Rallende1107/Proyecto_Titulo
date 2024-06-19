@@ -421,6 +421,7 @@ def edit_cart(request, producto_id):
 
     return redirect('cart')
 
+from django.contrib import messages
 
 @login_required
 def reserva(request):
@@ -457,7 +458,7 @@ def reserva(request):
     print("Reserva creada:", reserva)
 
     try:
-        reserva.clean()
+        reserva.full_clean()  # Validar el modelo Reserva antes de guardarlo
         reserva.save()
 
         print("Reserva guardada en la base de datos.")
@@ -486,16 +487,19 @@ def reserva(request):
             producto.cantidad -= cantidad
             producto.save()
 
+        # Limpiar el carrito después de procesar la reserva
         request.session['carrito'] = {}
         request.session.modified = True
 
-        print(
-            f"Reserva creada con ID: {reserva.id} para el cliente: {request.user.username}")
+        print(f"Reserva creada con ID: {reserva.id} para el cliente: {request.user.username}")
 
-        return redirect(reverse('home'))
+        # Agregar mensaje de éxito
+        messages.success(request, f'Reserva creada con éxito. Numero De Orden:{reserva} ')
+        return redirect(reverse('cart'))
 
     except ValidationError as e:
         print(f"Error al crear la reserva: {e.message_dict}")
+        messages.error(request, 'Error al crear la reserva.')
         return redirect(reverse('cart'))
 
 

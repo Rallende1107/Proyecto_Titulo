@@ -6,59 +6,61 @@ from apps.haypan.models import Comuna, DetalleReserva, Producto,Local,Familiar, 
 from apps.haypan.api.serializers.serializers import ComunaSerializer, DetalleReservaSerializer, ProductoSerializer,FamiliaSerializer,LocalSerializer, ReservaSerializer,UserSerializer
 from apps.haypan.api.authentication_mixins import Authenticacion
 
-
 class DetalleReservaListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = DetalleReservaSerializer
-    queryset = DetalleReservaSerializer.Meta.model.objects.all()
+    queryset = DetalleReserva.objects.all()
     
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'Detalle Reserva creado correctamente'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
 
-class  DetalleReservaRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+class DetalleReservaRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     serializer_class = DetalleReservaSerializer
 
     def get_queryset(self):
-        return self.serializer_class.Meta.model.objects.all()
+        return DetalleReserva.objects.all()
 
-    def delete(self, request, pk=None):
-        detalleReserva = self.get_queryset().filter(id=pk).first()
-        if detalleReserva:
-            detalleReserva.state = False
-            detalleReserva.save()
-            return Response({'message': 'detalle Reserva eliminado correctamente'}, status=status.HTTP_200_OK)
-        return Response({'error': 'No existe un detalle Reserva  con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request, pk=None, *args, **kwargs):
+        detalle_reserva = self.get_object(pk)
+        if detalle_reserva:
+            detalle_reserva.delete()
+            return Response({'message': 'Detalle Reserva eliminado correctamente'}, status=status.HTTP_200_OK)
+        return Response({'error': 'No existe un detalle Reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
 
-    def patch(self, request, pk=None):
-        try:
-            detalleReserva = self.get_queryset().get(pk=pk)
-        except DetalleReserva.DoesNotExist:
+    def patch(self, request, pk=None, *args, **kwargs):
+        detalle_reserva = self.get_object(pk)
+        if not detalle_reserva:
             return Response({'error': 'No existe un detalle Reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = self.get_serializer(detalleReserva, data=request.data, partial=True)
+        serializer = self.get_serializer(detalle_reserva, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self, request, pk=None):
-        try:
-            detalleReserva = self.get_queryset().get(pk=pk)
-        except detalleReserva.DoesNotExist:
-            return Response({'error': 'No existe un reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
+    def put(self, request, pk=None, *args, **kwargs):
+        detalle_reserva = self.get_object(pk)
+        if not detalle_reserva:
+            return Response({'error': 'No existe un detalle Reserva con estos datos'}, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = self.get_serializer(detalleReserva, data=request.data)
+        serializer = self.get_serializer(detalle_reserva, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    def get_object(self, pk):
+        try:
+            return DetalleReserva.objects.get(pk=pk)
+        except DetalleReserva.DoesNotExist:
+            return None
+
 class DetalleReservaViews(viewsets.ModelViewSet):
     serializer_class = DetalleReservaSerializer
-    queryset = DetalleReservaSerializer.Meta.model.objects.all()
+    queryset = DetalleReserva.objects.all()
 
 class ReservaListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ReservaSerializer
