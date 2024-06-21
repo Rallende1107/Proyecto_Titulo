@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = "True"
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', 'https://proyectotitulo-production-1f3a.up.railway.app', 'https://vecina-hay-pan.cl']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', 'proyectotitulo-production-1f3a.up.railway.app', 'vecina-hay-pan.cl']
 
 
 # Application definition
@@ -176,6 +176,6 @@ LOGIN_URL = '/login/'
 # LOGOUT_REDIRECT_URL = '//'
 APPEND_SLASH = False
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'https://proyectotitulo-production-1f3a.up.railway.app/',   'https://vecina-hay-pan.cl/', ]
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'https://proyectotitulo-production-1f3a.up.railway.app',   'https://vecina-hay-pan.cl', ]
 
 
