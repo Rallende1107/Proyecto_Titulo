@@ -159,6 +159,4 @@ Thumbs.db
 *.iml
 *.ipr
 
-*.txt
-Dockerfile
-*.yml
+
