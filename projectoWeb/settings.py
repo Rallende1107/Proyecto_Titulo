@@ -104,25 +104,27 @@ WSGI_APPLICATION = 'projectoWeb.wsgi.application'
 #     }
 # }
 
+ENTORNO = 'PROD'
 
 
+if ENTORNO == 'PROD':
+    DATABASES = {
+        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 
-DATABASES = {'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))}
-
-
-
-
-
+    }
+elif ENTORNO == 'DEV':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': os.getenv('POSTGRES_DB', 'mydatabase'),
-#        'USER': os.getenv('POSTGRES_USER', 'postgres'),
-#        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'postgres'),
-#        'HOST': 'db',  # El nombre del servicio de la base de datos en el docker-compose.yml
-#        'PORT': '5432',
-#    }
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
 
 # Password validation
