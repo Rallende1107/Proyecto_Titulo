@@ -8,7 +8,7 @@ html * {
 }
 
 body {
-  background-image: url('../img/pixlr-image-generator-caa1c658-b157-4ea7-915e-f2afb5cec9b8.webp');
+  background-image: url('../img/HAY.webp');
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -69,8 +69,6 @@ footer {
   font-weight: 400;
   margin: 0px 5px;
 }
-
-
 
 /* Estilo general para la navbar */
 .navbar {
@@ -282,4 +280,34 @@ button[type="submit"] {
   border-radius: 10px; /* Bordes redondeados */
   backdrop-filter: blur(10px); /* Desenfoque */
   color: #e6efe6;
+}
+.card-text p{
+  color: rgb(0, 21, 255)!important;
+  margin-bottom: 0px;
+}
+.cantidad{
+  display:flex;
+  color: #000;
+}
+.cantidad label{
+  color: #000;
+}
+.carrito-titulo{
+font-size: 2em;
+color:#000
+}
+.carrito-total{
+font-size:1em;
+color:rgb(3, 69, 130);  
+}
+.formulario-registro label{
+  color:#f3eded;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+ 
+}
+.formulario-login label{
+  color:#f3eded;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
 }

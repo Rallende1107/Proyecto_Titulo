@@ -13,7 +13,7 @@
     <h1 class="mytitle">{{ title }}</h1>
   </div>
 
-      <form method="post">
+      <form method="post" class="formulario-registro">
         {% csrf_token %}
         {{ form.as_p }}
         <h1></h1>
