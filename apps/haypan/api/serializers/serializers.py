@@ -83,9 +83,12 @@ class UserSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
 class ReservaSerializer(serializers.ModelSerializer):
+    productos = serializers.PrimaryKeyRelatedField(queryset=Producto.objects.all(), many=True)
+
     class Meta:
         model = Reserva
         fields = '__all__'
+
 
 
 

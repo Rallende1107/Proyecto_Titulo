@@ -113,7 +113,7 @@ class ReservaRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
 
 class ReservaViews(viewsets.ModelViewSet):
     serializer_class = ReservaSerializer
-    queryset = ReservaSerializer.Meta.model.objects.all()
+    queryset = Reserva.objects.all()
 
 
 
