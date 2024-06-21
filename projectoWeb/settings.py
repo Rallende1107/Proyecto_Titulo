@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = "True"
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', 'proyectotitulo-production-1f3a.up.railway.app', 'vecina-hay-pan.cl']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', 'proyectotitulo-production-1f3a.up.railway.app', 'vecina-hay-pan.cl', 'proyectotitulo-dev.up.railway.app']
 
 
 # Application definition
@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'projectoWeb.wsgi.application'
 #     }
 # }
 
-ENTORNO = 'PROD'
+ENTORNO = 'DEV'
 
 
 if ENTORNO == 'PROD':
@@ -114,10 +114,7 @@ if ENTORNO == 'PROD':
     }
 elif ENTORNO == 'DEV':
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+                'default': dj_database_url.config(default=os.getenv('DATABASE_URL_DEV'))
     }
 
 # DATABASES = {
