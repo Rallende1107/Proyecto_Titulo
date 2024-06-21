@@ -34,35 +34,44 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', 'proyectotitulo-p
 
 # Application definition
 
-INSTALLED_APPS = [
+BASE_APP =[
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Apps
-    'apps.haypan',
-    # ...
+]
+
+EXTERNAL_APP = [
     'rest_framework',
     'simple_history',
     'rest_framework.authtoken',
     'corsheaders',
-
-
+    'whitenoise.runserver_nostatic',
 ]
+
+LOCAL_APP = [
+'apps.haypan',
+]
+
+
+INSTALLED_APPS = BASE_APP + EXTERNAL_APP + LOCAL_APP
+
 TOKEN_EXPIRED_AFTER_SECONDS = 86400
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.common.CommonMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 ROOT_URLCONF = 'projectoWeb.urls'
 
