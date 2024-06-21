@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-r7)07i8v6)abla1!ofwt^n!0eenrghujgpb7@#(b4ct%2_+@bn
 DEBUG = "True"
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', 'proyectotitulo-production-1f3a.up.railway.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', 'proyectotitulo-production-1f3a.up.railway.app', 'vecina-hay-pan.cl']
 
 
 # Application definition
@@ -176,3 +176,7 @@ CORS_ORIGIN_WHITELIST = [
 LOGIN_URL = '/login/'
 # LOGOUT_REDIRECT_URL = '//'
 APPEND_SLASH = False
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'https://proyectotitulo-production-1f3a.up.railway.app/',   'https://vecina-hay-pan.cl/', ]
+
+
