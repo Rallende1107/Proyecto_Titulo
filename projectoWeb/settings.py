@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -108,13 +109,13 @@ ENV = 'PROD'
 if ENV == 'DEV':
     DATABASES = {
         'default': dj_database_url.config(
-            default=os.os.getenv("DATABASE_URL_DEV")
+            default=os.getenv("DATABASE_URL_DEV")
         )
     }
-elif ENV == 'DEV':
+elif ENV == 'PROD':
     DATABASES = {
         'default': dj_database_url.config(
-            default=os.os.getenv("DATABASE_URL")
+            default=os.getenv("DATABASE_URL")
         )
     }
 
