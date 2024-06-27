@@ -10,7 +10,7 @@
             <p style="color: red;"><strong>Local:</strong> {{ reserva.local.nombre }}</p>
             <p style="color: red;"><strong>Usuario Reservado:</strong> {{ reserva.cliente.username }}</p>
             <p style="color: red;"><strong>Estado:</strong> {{ reserva.get_estado_display }}</p>
-            
+
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ detalle_reserva.producto.nombre }}</td>
                             <td>${{ detalle_reserva.precio_unitario }}</td>
-                            <td>{{ detalle_reserva.cantidad }}</td>  
+                            <td>{{ detalle_reserva.cantidad }}</td>
                             <td>${{ detalle_reserva.total }}</td>
                         </tr>
                         {% endfor %}
@@ -40,7 +40,7 @@
             {% csrf_token %}
             {% if reserva.estado != reserva.CANCELADO_COMERCIANTE and reserva.estado != reserva.RETIRADO and reserva.estado != reserva.EXPIRADO and reserva.estado != reserva.CANCELADO_CLIENTE %}
             <h4>Actualizar Estado de la Reserva</h4>
-            <div class="form-group">
+            <div class="form-group estado">
                     <label for="nuevo_estado">Estado de la Reserva:</label>
                     <select class="form-control" id="nuevo_estado" name="nuevo_estado">
                         <option value="{{ reserva.SOLICITADO }}">Solicitado</option>
@@ -56,7 +56,7 @@
             {% endif %}
         </form>
     </div>
-    
-    
+
+
 </body>
 {% endblock %}
