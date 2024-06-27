@@ -25,11 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.getenv("DEBUG") == "True"
-DEBUG = "True"
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '0.0.0.0', 'proyectotitulo-production-1f3a.up.railway.app', 'vecina-hay-pan.cl', 'proyectotitulo-dev.up.railway.app']
+DEBUG = "True"
+LOCAL_HOST = ['localhost', '127.0.0.1', '[::1]']
+
+HOSTS_BASE = ['0.0.0.0', 'proyectotitulo-production-1f3a.up.railway.app', 'vecina-hay-pan.cl', 'proyectotitulo-dev.up.railway.app']
+
+ALLOWED_HOSTS = HOSTS_BASE
 
 
 # Application definition
@@ -97,12 +99,7 @@ WSGI_APPLICATION = 'projectoWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+
 
 ENTORNO = 'DEV'
 
@@ -114,8 +111,12 @@ if ENTORNO == 'PROD':
     }
 elif ENTORNO == 'DEV':
     DATABASES = {
-                'default': dj_database_url.config(default=os.getenv('DATABASE_URL_DEV'))
+        'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+
+}
 
 
 
@@ -153,7 +154,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-# STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -171,15 +171,13 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8100",
-]
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8100",
-]
 LOGIN_URL = '/login/'
 # LOGOUT_REDIRECT_URL = '//'
 APPEND_SLASH = False
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:8100",]
+
+CORS_ORIGIN_WHITELIST = ["http://localhost:8100",]
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'https://proyectotitulo-production-1f3a.up.railway.app', 'https://proyectotitulo-dev.up.railway.app', 'https://vecina-hay-pan.cl', ]
 
