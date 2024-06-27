@@ -29,7 +29,7 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         # Llamar a la función para cargar los datos
-        cargar_datos_desde_json()
+        # cargar_datos_desde_json()
 
         # Puedes pasar el resultado a tu template si es necesario
 
@@ -549,13 +549,13 @@ def userPanel(request):
 def booking(request, usuario_id):
     # Obtener todas las reservas del cliente especificado
     reservas_cliente = Reserva.objects.filter(cliente_id=usuario_id).order_by('-fechaInicio')
-    
+
     # Filtrar las reservas por estado
     estado_reservas = request.GET.get('estado', None)  # Obtener el estado de la reserva de la consulta GET
-    
+
     if estado_reservas:  # Si se proporciona un estado, filtrar las reservas por ese estado
         reservas_cliente = reservas_cliente.filter(estado=estado_reservas)
-    
+
     return render(request, 'booking.html', {'reservas': reservas_cliente})
 
 
