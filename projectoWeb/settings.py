@@ -176,10 +176,12 @@ LOGIN_URL = '/login/'
 # LOGOUT_REDIRECT_URL = '//'
 APPEND_SLASH = False
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:8100",]
+CORS_ALLOWED_ORIGINS = ['https://vecina-hay-pan.cl','https://*']
+# "http://localhost:8100"
+CORS_ORIGIN_WHITELIST = ['https://vecina-hay-pan.cl','https://*']
+# "http://localhost:8100"
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:8100",]
-
-CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'https://proyectotitulo-production-1f3a.up.railway.app', 'https://proyectotitulo-dev.up.railway.app', 'https://vecina-hay-pan.cl', ]
+CSRF_TRUSTED_ORIGINS = ['https://proyectotitulo-production-1f3a.up.railway.app', 'https://proyectotitulo-dev.up.railway.app', 'https://vecina-hay-pan.cl','https://*']
+# 'http://localhost', 'http://127.0.0.1',
 
 
