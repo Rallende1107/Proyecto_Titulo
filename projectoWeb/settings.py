@@ -173,7 +173,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 LOGIN_URL = '/login/'
-# LOGOUT_REDIRECT_URL = '//'
 APPEND_SLASH = False
 
 CORS_ALLOWED_ORIGINS = ['https://vecina-hay-pan.cl','https://*']
