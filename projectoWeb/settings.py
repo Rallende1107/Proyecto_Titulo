@@ -62,7 +62,6 @@ INSTALLED_APPS = BASE_APP + EXTERNAL_APP + LOCAL_APP
 
 TOKEN_EXPIRED_AFTER_SECONDS = 86400
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -184,4 +184,5 @@ CORS_ORIGIN_WHITELIST = ['https://vecina-hay-pan.cl','https://*']
 CSRF_TRUSTED_ORIGINS = ['https://proyectotitulo-production-1f3a.up.railway.app', 'https://proyectotitulo-dev.up.railway.app', 'https://vecina-hay-pan.cl','https://*']
 # 'http://localhost', 'http://127.0.0.1',
 
+CORS_ALLOW_ALL_ORIGINS = True  # Solo para desarrollo, no recomendado en producción
 
