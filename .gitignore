@@ -159,5 +159,5 @@ Thumbs.db
 *.iml
 *.ipr
 
-/Dockerfile.txt
-/docker-compose.yml.txt
+*Dockerfile*
+*docker-compose.yml*
