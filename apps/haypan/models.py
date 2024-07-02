@@ -1,11 +1,9 @@
 from datetime import date, datetime, timedelta
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator, MaxValueValidator, ValidationError
 from django.forms import ValidationError
-from django.forms import ValidationError
-
+from datetime import date
 
 
 # Create your models here.
@@ -135,7 +133,7 @@ from django.utils import timezone
 class Reserva(models.Model):
     numeroOrden = models.IntegerField(unique=True)
     fechaInicio = models.DateField()
-    horaInicio = models.TimeField(default=timezone.now) 
+    horaInicio = models.TimeField(default=timezone.now)
     cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE, limit_choices_to={'cliente': True})
     productos = models.ManyToManyField(Producto)
     local = models.ForeignKey(Local, on_delete=models.CASCADE)
@@ -158,7 +156,7 @@ class Reserva(models.Model):
 
     estado = models.CharField(
         max_length=1, choices=TIPO_CHOICES, default=SOLICITADO)
-    
+
     def cancelar_por_cliente(self):
         self.estado = self.CANCELADO_CLIENTE
         self.fecha_cancelado_cliente = datetime.now()
